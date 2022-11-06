@@ -9,11 +9,14 @@ inside root folder of your hosting, run following command:
 
 then rename the directory of `repo-directory-name` to `public_html`
 
-`git pull`
+after successfully cloning the repo and renamed the folder to `public_html`, then repeat the following commands to update the changes regarding to our react app
 
-`npm install`
+1. `git pull`
 
-`npm run build`
+(run this only if there is changes in dependencies and for first clone)
+2. `npm install` (optional)
+
+3. `npm run build`
 
 ### Understand the .htaccess file
 in .htaccess we can configure our hosting service to use /build folder as the root directory
