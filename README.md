@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -14,6 +14,7 @@ after successfully cloning the repo and renamed the folder to `public_html`, the
 1. `git pull`
 
 (run this only if there is changes in dependencies and for first clone)
+
 2. `npm install` (optional)
 
 3. `npm run build`
