@@ -2,9 +2,28 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Scripts for hosting (via SSH)
+## Scripts for shared hosting (via SSH)
 
-## Available Scripts for local
+inside root folder of your hosting, run following command:
+`git clone [repo-url]`
+
+then rename the directory of `repo-directory-name` to `public_html`
+
+`git pull`
+
+`npm install`
+
+`npm run build`
+
+### Understand the .htaccess file
+in .htaccess we can configure our hosting service to use /build folder as the root directory
+
+Temporaryly, you can see the deployed demonstration here [https://reinhardjs.site](https://reinhardjs.site)
+
+### Understand the .env file
+in .env there is a value for BUILD_PATH, specify the directory to where the react app want to be builded.
+
+## Available Scripts (for local development)
 
 In the project directory, you can run:
 
