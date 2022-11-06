@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^reinhardjs.site$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.reinhardjs.site$
+RewriteCond %{REQUEST_URI} !build/
+RewriteRule (.*) /build/$1 [L]
