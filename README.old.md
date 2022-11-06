@@ -1,1 +1,0 @@
-# shoolarship-registration-frontend
