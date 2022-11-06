@@ -22,7 +22,7 @@ after successfully cloning the repo and renamed the folder to `public_html`, the
 ### Understand the .htaccess file
 in .htaccess we can configure our hosting service to use /build folder as the root directory
 
-Temporaryly, you can see the deployed demonstration here [https://reinhardjs.site](https://reinhardjs.site)
+Temporarily, you can see the deployed demonstration here [https://reinhardjs.site](https://reinhardjs.site)
 
 ### Understand the .env file
 in .env there is a value for BUILD_PATH, specify the directory to where the react app want to be builded.
