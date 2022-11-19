@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextInput = (props) => {
-  const { form, labelString, inputName, placeholder } = props;
+  const { form, labelString, inputName, placeholder, validation } = props;
   const {
     register,
     formState: { errors },
@@ -9,15 +9,20 @@ const TextInput = (props) => {
 
   return (
     <div className="text-input-container">
-      <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+      <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
         {labelString}
       </label>
       <input
-        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
         placeholder={placeholder}
-        {...register(inputName, { required: true })}
+        {...register(inputName, { required: true, validate: validation })}
       />
-      {errors[inputName] && <span>Silakan isi {labelString} Anda</span>}
+      {errors[inputName] &&
+        (errors[inputName].type === "validate" ? (
+          <span>{labelString} tidak valid</span>
+        ) : (
+          <span>Silakan isi {labelString}</span>
+        ))}
     </div>
   );
 };
