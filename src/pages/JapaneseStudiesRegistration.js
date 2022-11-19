@@ -1,9 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import TextInput from "../components/TextInput";
 
 const JapaneseStudiesRegistration = () => {
   const form = useForm();
+  const history = useHistory();
   const { handleSubmit } = form;
 
   const isValidEmail = (email) =>
@@ -22,10 +25,18 @@ const JapaneseStudiesRegistration = () => {
       <div className="grid h-screen place-items-center">
         <div className="min-w-full">
           <form
-            className="m-auto mt-10 mb-10 max-w-2xl rounded-lg border bg-white py-10 px-12 shadow"
+            className="m-auto mt-10 mb-10 max-w-2xl rounded-lg border bg-white py-8 px-7 shadow"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
+              <div className="flex  place-items-center">
+                <ArrowLeftIcon
+                  className="h-7 w-7 cursor-pointer text-blue-500"
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                />
+              </div>
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 Students Registration
               </h1>
