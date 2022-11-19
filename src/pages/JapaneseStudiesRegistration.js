@@ -4,10 +4,9 @@ import TextInput from "../components/TextInput";
 
 const JapaneseStudiesRegistration = () => {
   const form = useForm();
-  const { handleSubmit, watch } = form;
+  const { handleSubmit } = form;
 
   const onSubmit = (data) => console.log(data);
-  console.log(watch("nama"));
 
   return (
     <React.Fragment>
@@ -21,7 +20,7 @@ const JapaneseStudiesRegistration = () => {
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 Students Registration
               </h1>
-              <TextInput form={form} labelString={"Nama"} inputName={"nama"} />
+              <TextInput form={form} labelString={"Nama"} inputName={"name"} />
               <TextInput
                 form={form}
                 labelString={"Email"}
