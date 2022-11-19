@@ -1,8 +1,8 @@
 import "./App.css";
-import Registration from "./pages/registration";
+import JapaneseStudiesRegistration from "./pages/JapaneseStudiesRegistration";
 
 function App() {
-  return <Registration />;
+  return <JapaneseStudiesRegistration />;
 }
 
 export default App;
