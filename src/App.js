@@ -1,8 +1,17 @@
 import "./App.css";
-import Registration from "./pages/registration";
+import JapaneseStudiesRegistration from "./pages/JapaneseStudiesRegistration";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-  return <Registration />;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/studies">
+          <JapaneseStudiesRegistration />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

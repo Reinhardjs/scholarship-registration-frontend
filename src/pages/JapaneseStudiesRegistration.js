@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "../components/TextInput";
 
-const Registration = () => {
+const JapaneseStudiesRegistration = () => {
   const form = useForm();
   const { handleSubmit, watch } = form;
 
@@ -28,4 +28,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default JapaneseStudiesRegistration;
