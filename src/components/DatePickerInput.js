@@ -11,7 +11,7 @@ const DatePickerInput = (props) => {
   React.useEffect(() => {
     const datepickerEl = document?.getElementById("datePicker");
     new Datepicker(datepickerEl, {
-      format: "dd-mm-yyyy",
+      format: "yyyy-mm-dd",
       autohide: true,
     });
   }, []);
