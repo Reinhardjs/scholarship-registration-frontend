@@ -1,22 +1,70 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import TextInput from "../components/TextInput";
+import TextInput from "../../components/TextInput";
+import SelectInput from "../../components/SelectInput";
+import PhoneNumberInput from "../../components/PhoneNumberInput";
+import DatePickerInput from "../../components/DatePickerInput";
 
 const JapaneseStudiesRegistration = () => {
   const form = useForm();
   const history = useHistory();
-  const { handleSubmit } = form;
+  const { handleSubmit, register, watch } = form;
+  const [universitasList, setUniversitasList] = React.useState([]);
+  const [wilayahList, setWilayahList] = React.useState([]);
+  const [selectedUniversitas, setSelectedUniversitas] = React.useState([]);
+  const [selectedProvinsi, setSelectedProvinsi] = React.useState([]);
+  const [selectedKota, setSelectedKota] = React.useState([]);
+
+  const filteredProvince = wilayahList.filter((item) => {
+    return item.provinsi === watch("province");
+  });
+  const kotaList = filteredProvince.length > 0 ? filteredProvince[0].kota : [];
 
   const isValidEmail = (email) =>
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
 
   const handleEmailValidation = (email) => {
     return isValidEmail(email);
   };
+
+  const getUniversitasList = async () => {
+    fetch("universitas.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (jsonObject) {
+        setUniversitasList(jsonObject);
+      });
+  };
+
+  const getWilayahList = async () => {
+    fetch("wilayah.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (jsonObject) {
+        setWilayahList(jsonObject);
+      });
+  };
+
+  React.useEffect(() => {
+    getUniversitasList();
+    getWilayahList();
+  }, []);
 
   const onSubmit = (data) => console.log(data);
 
@@ -50,8 +98,9 @@ const JapaneseStudiesRegistration = () => {
                 form={form}
                 labelString={"Telepon"}
                 inputName={"telephone"}
+                isRequired={false}
               />
-              <TextInput
+              <PhoneNumberInput
                 form={form}
                 labelString={"Handphone"}
                 inputName={"handphone"}
@@ -61,7 +110,7 @@ const JapaneseStudiesRegistration = () => {
                 labelString={"Jenis Kelamin"}
                 inputName={"gender"}
               />
-              <TextInput
+              <DatePickerInput
                 form={form}
                 labelString={"Tanggal Lahir"}
                 inputName={"birthdate"}
@@ -77,16 +126,29 @@ const JapaneseStudiesRegistration = () => {
                 labelString={"Japanese Resident?"}
                 inputName={"japaneseResident"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
                 labelString={"Provinsi"}
                 inputName={"province"}
+                data={wilayahList.map((item) => {
+                  return { option: item.provinsi, value: item.provinsi };
+                })}
               />
-              <TextInput form={form} labelString={"Kota"} inputName={"city"} />
-              <TextInput
+              <SelectInput
+                form={form}
+                labelString={"Kota"}
+                inputName={"city"}
+                data={kotaList.map((item) => {
+                  return { option: item, value: item };
+                })}
+              />
+              <SelectInput
                 form={form}
                 labelString={"Universitas"}
                 inputName={"university"}
+                data={universitasList.map((item) => {
+                  return { option: item, value: item };
+                })}
               />
               <TextInput
                 form={form}
