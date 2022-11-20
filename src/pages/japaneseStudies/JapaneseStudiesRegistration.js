@@ -65,27 +65,12 @@ const JapaneseStudiesRegistration = () => {
   }, []);
 
   const onSubmit = (data) => {
-    // fetch("https://api.reinhardjs.site/japanese-studies/register", {
-    //   method: "post",
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Content-type": "application/json; charset=UTF-8",
-    //   },
-    //   body: data,
-    // })
-    //   .then(function (response) {
-    //     alert(response);
-    //     return response.json();
-    //   })
-    //   .catch((error) => {
-    //     alert(error);
-    //   });
-
     axios
       .post("https://api.reinhardjs.site/japanese-studies/register", data)
       .then(
         (response) => {
-          console.log(response);
+          const bodyResponseString = response.data;
+          console.log(bodyResponseString);
         },
         (error) => {
           console.log(error);
