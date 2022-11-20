@@ -2,7 +2,7 @@ import React from "react";
 import Datepicker from "flowbite-datepicker/Datepicker";
 
 const DatePickerInput = (props) => {
-  const { form, labelString, inputName } = props;
+  const { form, labelString, inputName, notes } = props;
   const {
     register,
     formState: { errors },
@@ -45,11 +45,12 @@ const DatePickerInput = (props) => {
           placeholder={"Pilih " + labelString}
         />
       </div>
+      {notes && <p className="ml-1 text-sm italic">{notes}</p>}
       {errors[inputName] &&
         (errors[inputName].type === "validate" ? (
-          <span>{labelString} tidak valid</span>
+          <span className="text-red-600">{labelString} tidak valid</span>
         ) : (
-          <span>Silakan pilih {labelString}</span>
+          <span className="text-red-600">Silakan pilih {labelString}</span>
         ))}
     </div>
   );
