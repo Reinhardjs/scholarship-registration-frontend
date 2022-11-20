@@ -78,7 +78,7 @@ const JapaneseStudiesRegistration = () => {
                 <ArrowLeftIcon
                   className="h-7 w-7 cursor-pointer text-red-600"
                   onClick={() => {
-                    history.goBack();
+                    history.replace("/");
                   }}
                 />
               </div>
