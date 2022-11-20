@@ -13,7 +13,7 @@ const SelectInput = (props) => {
         {labelString}
       </label>
       <select
-        className="form-select m-0 block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 bg-clip-padding bg-no-repeat p-2.5 text-gray-900 focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900"
+        className="form-select m-0 block w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 bg-clip-padding bg-no-repeat p-2.5 text-gray-900 focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
         aria-label="Default select example"
         {...register(inputName, {
           required: true,
