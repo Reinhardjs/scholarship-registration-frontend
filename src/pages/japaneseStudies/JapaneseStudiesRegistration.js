@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import axios from "axios";
 import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 import PhoneNumberInput from "../../components/PhoneNumberInput";
@@ -64,21 +65,32 @@ const JapaneseStudiesRegistration = () => {
   }, []);
 
   const onSubmit = (data) => {
-    fetch("https://api.reinhardjs.site/japanese-studies/register", {
-      method: "post",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: data,
-    })
-      .then(function (response) {
-        alert(response);
-        return response.json();
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    // fetch("https://api.reinhardjs.site/japanese-studies/register", {
+    //   method: "post",
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Content-type": "application/json; charset=UTF-8",
+    //   },
+    //   body: data,
+    // })
+    //   .then(function (response) {
+    //     alert(response);
+    //     return response.json();
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
+
+    axios
+      .post("https://api.reinhardjs.site/japanese-studies/register", data)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   return (
