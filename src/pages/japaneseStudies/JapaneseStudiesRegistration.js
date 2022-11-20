@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
@@ -10,12 +10,9 @@ import DatePickerInput from "../../components/DatePickerInput";
 const JapaneseStudiesRegistration = () => {
   const form = useForm();
   const history = useHistory();
-  const { handleSubmit, register, watch } = form;
+  const { handleSubmit, watch } = form;
   const [universitasList, setUniversitasList] = React.useState([]);
   const [wilayahList, setWilayahList] = React.useState([]);
-  const [selectedUniversitas, setSelectedUniversitas] = React.useState([]);
-  const [selectedProvinsi, setSelectedProvinsi] = React.useState([]);
-  const [selectedKota, setSelectedKota] = React.useState([]);
 
   const filteredProvince = wilayahList.filter((item) => {
     return item.provinsi === watch("province");
