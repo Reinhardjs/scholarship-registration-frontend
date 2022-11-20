@@ -110,10 +110,13 @@ const JapaneseStudiesRegistration = () => {
                 labelString={"Handphone"}
                 inputName={"handphone"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
                 labelString={"Jenis Kelamin"}
                 inputName={"gender"}
+                data={["Laki-laki", "Perempuan"].map((item) => {
+                  return { option: item, value: item };
+                })}
               />
               <DatePickerInput
                 form={form}
