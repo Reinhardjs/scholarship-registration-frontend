@@ -90,24 +90,24 @@ const JapaneseStudiesRegistration = () => {
               </h1>
               <TextInput
                 form={form}
-                labelString={"Nama"}
+                labelString={"Nama Lengkap"}
                 inputName={"name"}
                 notes={"Nama lengkap tidak disingkat"}
               />
               <TextInput
                 form={form}
-                labelString={"Alamat"}
+                labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
               />
               <TextInput
                 form={form}
-                labelString={"Telepon"}
+                labelString={"Nomor Telepon"}
                 inputName={"telephone"}
                 isRequired={false}
               />
               <PhoneNumberInput
                 form={form}
-                labelString={"Handphone"}
+                labelString={"Nomor Ponsel"}
                 inputName={"handphone"}
               />
               <SelectInput
@@ -131,10 +131,13 @@ const JapaneseStudiesRegistration = () => {
                 validation={handleEmailValidation}
                 notes={"E-mail yang terkoneksi dengan HP"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
-                labelString={"Japanese Resident?"}
+                labelString={"Apakah memiliki status kewarganegaraan Jepang?"}
                 inputName={"japaneseResident"}
+                data={["Ya", "Tidak"].map((item) => {
+                  return { option: item, value: item };
+                })}
               />
               <SelectInput
                 form={form}
@@ -146,7 +149,7 @@ const JapaneseStudiesRegistration = () => {
               />
               <SelectInput
                 form={form}
-                labelString={"Kota"}
+                labelString={"Kota/Kabupaten"}
                 inputName={"city"}
                 data={kotaList.map((item) => {
                   return { option: item, value: item };
@@ -170,14 +173,14 @@ const JapaneseStudiesRegistration = () => {
               />
               <TextInput
                 form={form}
-                labelString={"IPK"}
+                labelString={"IPK (Indeks Prestasi Kumulatif)"}
                 inputName={"ipk"}
                 type={"number"}
                 notes={"Contoh: 3.00 atau 3.57"}
               />
               <SelectInput
                 form={form}
-                labelString={"JLPT"}
+                labelString={"JLPT (Japanese Language Proficiency Test)"}
                 inputName={"jlpt"}
                 data={["N1", "N2", "N3", "N4", "N5", "Tidak Ada"].map(
                   (item) => {
@@ -194,7 +197,7 @@ const JapaneseStudiesRegistration = () => {
               />
               <SelectInput
                 form={form}
-                labelString={"Lokasi Test"}
+                labelString={"Lokasi Ujian Tulis Beasiswa MEXT"}
                 inputName={"testLocation"}
                 data={[
                   "Jakarta",
