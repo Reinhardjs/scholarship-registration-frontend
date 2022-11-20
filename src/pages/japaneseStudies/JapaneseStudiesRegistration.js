@@ -69,8 +69,8 @@ const JapaneseStudiesRegistration = () => {
       .post("https://api.reinhardjs.site/japanese-studies/register", data)
       .then(
         (response) => {
-          const bodyResponseString = response.data;
-          console.log(bodyResponseString);
+          const { data } = response;
+          console.log(data); // data is object
         },
         (error) => {
           console.log(error);
