@@ -79,7 +79,7 @@ const JapaneseStudiesRegistration = () => {
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
               <div className="flex  place-items-center">
                 <ArrowLeftIcon
-                  className="h-7 w-7 cursor-pointer text-blue-500"
+                  className="h-7 w-7 cursor-pointer text-red-600"
                   onClick={() => {
                     history.goBack();
                   }}
