@@ -8,6 +8,8 @@ const TextInput = (props) => {
     placeholder,
     validation,
     isRequired = true,
+    type = "text",
+    notes,
   } = props;
   const {
     register,
@@ -20,15 +22,19 @@ const TextInput = (props) => {
         {labelString}
       </label>
       <input
-        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+        type={type}
+        step={type === "number" ? "any" : undefined}
+        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
         placeholder={placeholder}
+        onWheel={type === "number" ? (e) => e.target.blur() : undefined}
         {...register(inputName, { required: isRequired, validate: validation })}
       />
+      {notes && <p className="ml-1 text-sm italic">{notes}</p>}
       {errors[inputName] &&
         (errors[inputName].type === "validate" ? (
-          <span>{labelString} tidak valid</span>
+          <span className="text-red-600">{labelString} tidak valid</span>
         ) : (
-          <span>Silakan isi {labelString}</span>
+          <span className="text-red-600">Silakan isi {labelString}</span>
         ))}
     </div>
   );

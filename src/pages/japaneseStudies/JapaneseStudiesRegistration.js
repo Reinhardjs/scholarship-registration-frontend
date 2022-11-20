@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
@@ -10,12 +10,9 @@ import DatePickerInput from "../../components/DatePickerInput";
 const JapaneseStudiesRegistration = () => {
   const form = useForm();
   const history = useHistory();
-  const { handleSubmit, register, watch } = form;
+  const { handleSubmit, watch } = form;
   const [universitasList, setUniversitasList] = React.useState([]);
   const [wilayahList, setWilayahList] = React.useState([]);
-  const [selectedUniversitas, setSelectedUniversitas] = React.useState([]);
-  const [selectedProvinsi, setSelectedProvinsi] = React.useState([]);
-  const [selectedKota, setSelectedKota] = React.useState([]);
 
   const filteredProvince = wilayahList.filter((item) => {
     return item.provinsi === watch("province");
@@ -79,52 +76,65 @@ const JapaneseStudiesRegistration = () => {
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
               <div className="flex  place-items-center">
                 <ArrowLeftIcon
-                  className="h-7 w-7 cursor-pointer text-blue-500"
+                  className="h-7 w-7 cursor-pointer text-red-600"
                   onClick={() => {
-                    history.goBack();
+                    history.replace("/");
                   }}
                 />
               </div>
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 Students Registration
               </h1>
-              <TextInput form={form} labelString={"Nama"} inputName={"name"} />
               <TextInput
                 form={form}
-                labelString={"Alamat"}
+                labelString={"Nama Lengkap"}
+                inputName={"name"}
+                notes={"Nama lengkap tidak disingkat"}
+              />
+              <TextInput
+                form={form}
+                labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
               />
               <TextInput
                 form={form}
-                labelString={"Telepon"}
+                labelString={"Nomor Telepon"}
                 inputName={"telephone"}
                 isRequired={false}
               />
               <PhoneNumberInput
                 form={form}
-                labelString={"Handphone"}
+                labelString={"Nomor Ponsel"}
                 inputName={"handphone"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
                 labelString={"Jenis Kelamin"}
                 inputName={"gender"}
+                data={["Laki-laki", "Perempuan"].map((item) => {
+                  return { option: item, value: item };
+                })}
               />
               <DatePickerInput
                 form={form}
                 labelString={"Tanggal Lahir"}
                 inputName={"birthdate"}
+                notes={"Usia maksimal 29 tahun pada 1 April 2023"}
               />
               <TextInput
                 form={form}
-                labelString={"Email"}
+                labelString={"Email Aktif"}
                 inputName={"email"}
                 validation={handleEmailValidation}
+                notes={"E-mail yang terkoneksi dengan HP"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
-                labelString={"Japanese Resident?"}
+                labelString={"Apakah memiliki status kewarganegaraan Jepang?"}
                 inputName={"japaneseResident"}
+                data={["Ya", "Tidak"].map((item) => {
+                  return { option: item, value: item };
+                })}
               />
               <SelectInput
                 form={form}
@@ -136,7 +146,7 @@ const JapaneseStudiesRegistration = () => {
               />
               <SelectInput
                 form={form}
-                labelString={"Kota"}
+                labelString={"Kota/Kabupaten"}
                 inputName={"city"}
                 data={kotaList.map((item) => {
                   return { option: item, value: item };
@@ -150,27 +160,59 @@ const JapaneseStudiesRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <SelectInput
                 form={form}
                 labelString={"Semester"}
                 inputName={"semester"}
+                data={[3, 5, 7, 9].map((item) => {
+                  return { option: item, value: item };
+                })}
               />
-              <TextInput form={form} labelString={"IPK"} inputName={"ipk"} />
-              <TextInput form={form} labelString={"JLPT"} inputName={"jlpt"} />
+              <TextInput
+                form={form}
+                labelString={"IPK (Indeks Prestasi Kumulatif)"}
+                inputName={"ipk"}
+                type={"number"}
+                notes={"Contoh: 3.00 atau 3.57"}
+              />
+              <SelectInput
+                form={form}
+                labelString={"JLPT (Japanese Language Proficiency Test)"}
+                inputName={"jlpt"}
+                data={["N1", "N2", "N3", "N4", "N5", "Tidak Ada"].map(
+                  (item) => {
+                    return { option: item, value: item };
+                  }
+                )}
+              />
               <TextInput
                 form={form}
                 labelString={"JLPT Score"}
                 inputName={"jlptScore"}
+                type={"number"}
+                notes={"Skor Total"}
               />
-              <TextInput
+              <SelectInput
                 form={form}
-                labelString={"Lokasi Test"}
+                labelString={"Lokasi Ujian Tulis Beasiswa MEXT"}
                 inputName={"testLocation"}
+                data={[
+                  "Jakarta",
+                  "Surabaya",
+                  "Denpasar",
+                  "Medan",
+                  "Makassar",
+                ].map((item) => {
+                  return { option: item, value: item };
+                })}
+                notes={
+                  "Setelah klik tombol submit, lokasi ujian yang telah dipilih tidak bisa diganti"
+                }
               />
               <div className="pt-2.5">
                 <button
                   className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                  type="submit"
+                  type={"submit"}
                 >
                   Submit
                 </button>

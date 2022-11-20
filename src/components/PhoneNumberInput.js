@@ -1,7 +1,8 @@
 import React from "react";
 
 const PhoneNumberInput = (props) => {
-  const { form, labelString, inputName, placeholder, validation } = props;
+  const { form, labelString, inputName, placeholder, validation, notes } =
+    props;
   const {
     register,
     formState: { errors },
@@ -18,16 +19,18 @@ const PhoneNumberInput = (props) => {
         </span>
         <input
           type="number"
-          class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 [appearance:textfield] focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 [appearance:textfield] focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
           placeholder={placeholder}
+          onWheel={(e) => e.target.blur()}
           {...register(inputName, { required: true, validate: validation })}
         />
       </div>
+      {notes && <p className="ml-1 text-sm italic">{notes}</p>}
       {errors[inputName] &&
         (errors[inputName].type === "validate" ? (
-          <span>{labelString} tidak valid</span>
+          <span className="text-red-600">{labelString} tidak valid</span>
         ) : (
-          <span>Silakan isi {labelString}</span>
+          <span className="text-red-600">Silakan isi {labelString}</span>
         ))}
     </div>
   );
