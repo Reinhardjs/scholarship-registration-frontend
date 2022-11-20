@@ -1,7 +1,14 @@
 import React from "react";
 
 const TextInput = (props) => {
-  const { form, labelString, inputName, placeholder, validation } = props;
+  const {
+    form,
+    labelString,
+    inputName,
+    placeholder,
+    validation,
+    isRequired = true,
+  } = props;
   const {
     register,
     formState: { errors },
@@ -15,7 +22,7 @@ const TextInput = (props) => {
       <input
         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
         placeholder={placeholder}
-        {...register(inputName, { required: true, validate: validation })}
+        {...register(inputName, { required: isRequired, validate: validation })}
       />
       {errors[inputName] &&
         (errors[inputName].type === "validate" ? (
