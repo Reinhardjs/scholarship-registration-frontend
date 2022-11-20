@@ -23,8 +23,10 @@ const TextInput = (props) => {
       </label>
       <input
         type={type}
+        step={type === "number" ? "any" : undefined}
         className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
         placeholder={placeholder}
+        onWheel={type === "number" ? (e) => e.target.blur() : undefined}
         {...register(inputName, { required: isRequired, validate: validation })}
       />
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
