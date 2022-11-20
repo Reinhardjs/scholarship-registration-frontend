@@ -63,7 +63,23 @@ const JapaneseStudiesRegistration = () => {
     getWilayahList();
   }, []);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    fetch("https://api.reinhardjs.site/japanese-studies/register", {
+      method: "post",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: data,
+    })
+      .then(function (response) {
+        alert(response);
+        return response.json();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   return (
     <React.Fragment>
