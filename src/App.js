@@ -1,6 +1,6 @@
 import "./App.css";
 import React  from "react";
-import JapaneseStudiesRegistration from "./pages/japaneseStudies/JapaneseStudiesRegistration";
+import JapaneseStudiesStudentRegistration from "./pages/japaneseStudies/JapaneseStudiesStudentRegistration";
 import { Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 
@@ -11,7 +11,7 @@ function App() {
         <LandingPage />
       </Route>
       <Route path="/studies">
-        <JapaneseStudiesRegistration />
+        <JapaneseStudiesStudentRegistration />
       </Route>
     </Switch>
   );
