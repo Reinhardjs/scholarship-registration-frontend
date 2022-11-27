@@ -21,8 +21,12 @@ const SelectInput = (props) => {
         defaultValue=""
       >
         <option value="">-- Pilih {labelString} --</option>
-        {data.map((item) => {
-          return <option value={item.value}>{item.option}</option>;
+        {data.map((item, key) => {
+          return (
+            <option key={key} value={item.value}>
+              {item.option}
+            </option>
+          );
         })}
       </select>
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
