@@ -6,7 +6,17 @@ const DatePickerInput = (props) => {
   const {
     register,
     formState: { errors },
+    trigger,
+    setValue,
   } = form;
+
+  const triggerOnDateChanged = React.useCallback(
+    (e) => {
+      setValue(inputName, e.target.value);
+      trigger(inputName);
+    },
+    [inputName, setValue, trigger]
+  );
 
   React.useEffect(() => {
     const datepickerEl = document?.getElementById("datePicker");
@@ -14,7 +24,14 @@ const DatePickerInput = (props) => {
       format: "yyyy-mm-dd",
       autohide: true,
     });
-  }, []);
+    datepickerEl.addEventListener("changeDate", (e) => {
+      triggerOnDateChanged(e);
+    });
+
+    return () => {
+      datepickerEl.removeEventListener("changeDate");
+    };
+  }, [triggerOnDateChanged]);
 
   return (
     <div>
