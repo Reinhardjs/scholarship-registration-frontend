@@ -89,6 +89,7 @@ const JapaneseStudiesRegistration = () => {
               setResponseMessage(data);
             } else {
               setIsSuccess(true);
+              form.reset();
             }
           },
           (error) => {
