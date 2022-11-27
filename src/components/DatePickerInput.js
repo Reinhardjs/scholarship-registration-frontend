@@ -24,12 +24,10 @@ const DatePickerInput = (props) => {
       format: "yyyy-mm-dd",
       autohide: true,
     });
-    datepickerEl.addEventListener("changeDate", (e) => {
-      triggerOnDateChanged(e);
-    });
+    datepickerEl.addEventListener("changeDate", triggerOnDateChanged);
 
     return () => {
-      datepickerEl.removeEventListener("changeDate");
+      datepickerEl.removeEventListener("changeDate", triggerOnDateChanged);
     };
   }, [triggerOnDateChanged]);
 
