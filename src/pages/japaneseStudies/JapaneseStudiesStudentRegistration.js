@@ -77,7 +77,10 @@ const JapaneseStudiesRegistration = () => {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .post("https://api.reinhardjs.site/japanese-studies/register", formData)
+        .post(
+          process.env["REACT_APP_API_ENDPOINT"] + "/japanese-studies/register",
+          formData
+        )
         .then(
           (response) => {
             setIsLoading(false);
