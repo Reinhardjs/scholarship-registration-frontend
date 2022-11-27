@@ -3,6 +3,7 @@ import React from "react";
 const PhoneNumberInput = (props) => {
   const { form, labelString, inputName, placeholder, validation, notes } =
     props;
+  const [phoneNumber, setPhoneNumber] = React.useState();
   const {
     register,
     formState: { errors },
@@ -22,7 +23,18 @@ const PhoneNumberInput = (props) => {
           class="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 [appearance:textfield] focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
           placeholder={placeholder}
           onWheel={(e) => e.target.blur()}
-          {...register(inputName, { required: true, validate: validation })}
+          value={phoneNumber}
+          {...register(inputName, {
+            onChange: (e) => {
+              const deleteFirstZeroOfPhoneNumber = e.target.value.replace(
+                /^0+/,
+                ""
+              );
+              setPhoneNumber(deleteFirstZeroOfPhoneNumber);
+            },
+            required: true,
+            validate: validation,
+          })}
         />
       </div>
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
