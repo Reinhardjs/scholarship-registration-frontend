@@ -3,17 +3,26 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+
 import TextInput from "../../components/TextInput";
 import SelectInput from "../../components/SelectInput";
 import PhoneNumberInput from "../../components/PhoneNumberInput";
 import DatePickerInput from "../../components/DatePickerInput";
+import Modal from "../../components/Modal";
 
 const JapaneseStudiesRegistration = () => {
+  const [universitasList, setUniversitasList] = React.useState([]);
+  const [wilayahList, setWilayahList] = React.useState([]);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [isFailed, setIsFailed] = React.useState(false);
+  const [responseMessage, setResponseMessage] = React.useState("");
+  const [formData, setFormData] = React.useState();
+
   const form = useForm();
   const history = useHistory();
   const { handleSubmit, watch } = form;
-  const [universitasList, setUniversitasList] = React.useState([]);
-  const [wilayahList, setWilayahList] = React.useState([]);
 
   const filteredProvince = wilayahList.filter((item) => {
     return item.provinsi === watch("province");
@@ -59,24 +68,50 @@ const JapaneseStudiesRegistration = () => {
       });
   };
 
+  const onSubmit = (data) => {
+    setFormData(data);
+    setIsModalOpen(true);
+  };
+
+  const handleOnConfirmSubmit = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      axios
+        .post("https://api.reinhardjs.site/japanese-studies/register", formData)
+        .then(
+          (response) => {
+            setIsLoading(false);
+            const { data } = response;
+            console.log(data); // data is object
+
+            if (data === "Email Already Used") {
+              setIsFailed(true);
+              setResponseMessage(data);
+            } else {
+              setIsSuccess(true);
+            }
+          },
+          (error) => {
+            console.log(error);
+            alert(JSON.stringify(error));
+          }
+        );
+    }, 1000);
+  };
+
   React.useEffect(() => {
     getUniversitasList();
     getWilayahList();
   }, []);
 
-  const onSubmit = (data) => {
-    axios
-      .post("https://api.reinhardjs.site/japanese-studies/register", data)
-      .then(
-        (response) => {
-          const { data } = response;
-          console.log(data); // data is object
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  };
+  React.useEffect(() => {
+    if (!isModalOpen) {
+      setTimeout(() => {
+        setIsSuccess(false);
+        setIsFailed(false);
+      }, 500);
+    }
+  }, [isModalOpen]);
 
   return (
     <React.Fragment>
@@ -230,6 +265,16 @@ const JapaneseStudiesRegistration = () => {
                   Submit
                 </button>
               </div>
+
+              <Modal
+                open={isModalOpen}
+                setOpen={setIsModalOpen}
+                onConfirm={handleOnConfirmSubmit}
+                isLoading={isLoading}
+                isSuccess={isSuccess}
+                isFailed={isFailed}
+                responseMessage={responseMessage}
+              />
             </div>
           </form>
         </div>
