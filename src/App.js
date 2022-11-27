@@ -1,7 +1,8 @@
 import "./App.css";
-import React  from "react";
-import JapaneseStudiesStudentRegistration from "./pages/japaneseStudies/JapaneseStudiesStudentRegistration";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
+
+import JapaneseStudiesStudentRegistration from "./pages/japaneseStudies/JapaneseStudiesStudentRegistration";
 import LandingPage from "./pages/LandingPage";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
       <Route exact path="/">
         <LandingPage />
       </Route>
-      <Route path="/studies">
+      <Route path="/student">
         <JapaneseStudiesStudentRegistration />
       </Route>
     </Switch>
