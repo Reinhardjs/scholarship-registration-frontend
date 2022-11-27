@@ -6,16 +6,14 @@ const DatePickerInput = (props) => {
   const {
     register,
     formState: { errors },
-    trigger,
-    setValue,
   } = form;
 
   const triggerOnDateChanged = React.useCallback(
     (e) => {
-      setValue(inputName, e.target.value);
-      trigger(inputName);
+      form.setValue(inputName, e.target.value);
+      form.trigger(inputName);
     },
-    [inputName, setValue, trigger]
+    [inputName, form]
   );
 
   React.useEffect(() => {

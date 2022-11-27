@@ -3,7 +3,6 @@ import React from "react";
 const PhoneNumberInput = (props) => {
   const { form, labelString, inputName, placeholder, validation, notes } =
     props;
-  const [phoneNumber, setPhoneNumber] = React.useState();
   const {
     register,
     formState: { errors },
