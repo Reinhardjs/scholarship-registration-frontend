@@ -297,7 +297,7 @@ const JapaneseStudiesRegistration = () => {
               <SelectInput
                 form={form}
                 labelString={"Dari mana Anda tahu informasi beasiswa ini?"}
-                inputName={"infoForm"}
+                inputName={"infoFrom"}
                 data={[
                   "Guru",
                   "Teman",
