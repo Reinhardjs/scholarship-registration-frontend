@@ -34,8 +34,36 @@ const JapaneseStudiesRegistration = () => {
       email
     );
 
+  function calculateAge(birthYear, birthMonth, birthDay) {
+    var targetYear = 2023;
+    var targetMonth = 4;
+    var targetDay = 1;
+    var calculatedAge = targetYear - birthYear;
+
+    if (targetMonth < birthMonth) {
+      calculatedAge--;
+    }
+    if (birthMonth === targetMonth && targetDay < birthDay) {
+      calculatedAge--;
+    }
+    return calculatedAge;
+  }
+
+  const isValidDate = (date) => {
+    const LIMIT_AGE = 29;
+    const parts = date.split("-");
+    const birthYear = parseInt(parts[0]);
+    const birthMonth = parseInt(parts[1]);
+    const birthDay = parseInt(parts[2]);
+    return calculateAge(birthYear, birthMonth, birthDay) <= LIMIT_AGE;
+  };
+
   const handleEmailValidation = (email) => {
     return isValidEmail(email);
+  };
+
+  const handleDateValidation = (email) => {
+    return isValidDate(email);
   };
 
   const getUniversitasList = async () => {
@@ -76,6 +104,8 @@ const JapaneseStudiesRegistration = () => {
   const handleOnConfirmSubmit = () => {
     setIsLoading(true);
     setTimeout(() => {
+      console.log(formData);
+      formData.handphone = "+62" + formData.handphone;
       axios
         .post(
           process.env["REACT_APP_API_ENDPOINT"] + "/japanese-studies/register",
@@ -86,7 +116,6 @@ const JapaneseStudiesRegistration = () => {
             setIsLoading(false);
             const { data } = response;
             console.log(data); // data is object
-
             if (data === "Email Already Used") {
               setIsFailed(true);
               setResponseMessage(data);
@@ -171,6 +200,7 @@ const JapaneseStudiesRegistration = () => {
                 form={form}
                 labelString={"Tanggal Lahir"}
                 inputName={"birthdate"}
+                validation={handleDateValidation}
                 notes={"Usia maksimal 29 tahun pada 1 April 2023"}
               />
               <TextInput
@@ -243,6 +273,7 @@ const JapaneseStudiesRegistration = () => {
                 inputName={"jlptScore"}
                 type={"number"}
                 notes={"Skor Total"}
+                isDisabled={watch("jlpt") === "Tidak Ada" ? true : false}
               />
               <SelectInput
                 form={form}
