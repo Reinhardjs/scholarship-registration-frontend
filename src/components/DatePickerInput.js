@@ -2,7 +2,7 @@ import React from "react";
 import Datepicker from "flowbite-datepicker/Datepicker";
 
 const DatePickerInput = (props) => {
-  const { form, labelString, inputName, notes } = props;
+  const { form, labelString, inputName, notes, validation } = props;
   const {
     register,
     formState: { errors },
@@ -52,10 +52,13 @@ const DatePickerInput = (props) => {
         </span>
         <input
           id="datePicker"
-          {...register(inputName, { required: true })}
           defaultValue=""
           className="block w-full min-w-0 flex-1 rounded-none rounded-r-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 [appearance:textfield] focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm"
           placeholder={"Pilih " + labelString}
+          {...register(inputName, {
+            required: true,
+            validate: validation,
+          })}
         />
       </div>
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
