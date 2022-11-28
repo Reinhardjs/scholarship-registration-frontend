@@ -118,7 +118,7 @@ const JapaneseStudiesRegistration = () => {
             console.log(data); // data is object
             if (data === "Email Already Used") {
               setIsFailed(true);
-              setResponseMessage(data);
+              setResponseMessage("Email ini sudah terdaftar");
             } else {
               setIsSuccess(true);
               form.reset();
@@ -292,6 +292,75 @@ const JapaneseStudiesRegistration = () => {
                   "Setelah klik tombol submit, lokasi ujian yang telah dipilih tidak bisa diganti"
                 }
               />
+
+              <SelectInput
+                form={form}
+                labelString={"Dari mana Anda tahu informasi beasiswa ini?"}
+                inputName={"infoForm"}
+                data={[
+                  "Guru",
+                  "Teman",
+                  "Website/Media Sosial Kumpulan Informasi Beasiswa Ke Luar Negeri",
+                  "Webinar/Edufair JASSO",
+                  "Lainnya...",
+                ].map((item) => {
+                  return { option: item, value: item };
+                })}
+              />
+
+              <div class="mb-6 flex items-start pt-2">
+                <div class="flex h-5 items-center">
+                  <input
+                    id="terms"
+                    type="checkbox"
+                    value=""
+                    class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
+                    {...form.register("check1", {
+                      required: true,
+                    })}
+                  />
+                </div>
+                <label
+                  for="terms"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Pastikan Anda telah membaca prosedur persyaratan serta FAQ
+                  pada website Kedutaan Besar Jepang
+                </label>
+              </div>
+              {form.formState.errors["check1"] && (
+                <span className="text-red-600">
+                  Silakan centang terlebih dahulu
+                </span>
+              )}
+
+              <div class="mb-6 flex items-start">
+                <div class="flex h-5 items-center">
+                  <input
+                    id="terms"
+                    type="checkbox"
+                    value=""
+                    class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
+                    {...form.register("check2", {
+                      required: true,
+                    })}
+                  />
+                </div>
+                <label
+                  for="terms"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Periksa ulang jawaban Anda dan pastikan bahwa data sudah
+                  terisi dengan benar. Data yang sudah di submit tidak akan bisa
+                  diubah kembali.
+                </label>
+              </div>
+              {form.formState.errors["check2"] && (
+                <span className="text-red-600">
+                  Silakan centang terlebih dahulu
+                </span>
+              )}
+
               <div className="pt-2.5">
                 <button
                   className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
