@@ -225,6 +225,7 @@ const JapaneseStudiesRegistration = () => {
                 form={form}
                 labelString={"Nomor Telepon"}
                 inputName={"telephone"}
+                type={"number"}
                 isRequired={false}
               />
               <TextInput
