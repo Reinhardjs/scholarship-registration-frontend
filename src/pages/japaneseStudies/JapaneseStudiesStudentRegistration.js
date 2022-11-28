@@ -172,22 +172,6 @@ const JapaneseStudiesRegistration = () => {
                 inputName={"name"}
                 notes={"Nama lengkap tidak disingkat"}
               />
-              <TextInput
-                form={form}
-                labelString={"Alamat tempat tinggal sekarang"}
-                inputName={"address"}
-              />
-              <TextInput
-                form={form}
-                labelString={"Nomor Telepon"}
-                inputName={"telephone"}
-                isRequired={false}
-              />
-              <PhoneNumberInput
-                form={form}
-                labelString={"Nomor Ponsel"}
-                inputName={"handphone"}
-              />
               <SelectInput
                 form={form}
                 labelString={"Jenis Kelamin"}
@@ -203,13 +187,6 @@ const JapaneseStudiesRegistration = () => {
                 validation={handleDateValidation}
                 notes={"Usia maksimal 29 tahun pada 1 April 2023"}
               />
-              <TextInput
-                form={form}
-                labelString={"Email Aktif"}
-                inputName={"email"}
-                validation={handleEmailValidation}
-                notes={"E-mail yang terkoneksi dengan HP"}
-              />
               <SelectInput
                 form={form}
                 labelString={"Apakah memiliki status kewarganegaraan Jepang?"}
@@ -217,6 +194,11 @@ const JapaneseStudiesRegistration = () => {
                 data={["Ya", "Tidak"].map((item) => {
                   return { option: item, value: item };
                 })}
+              />
+              <TextInput
+                form={form}
+                labelString={"Alamat tempat tinggal sekarang"}
+                inputName={"address"}
               />
               <SelectInput
                 form={form}
@@ -233,6 +215,24 @@ const JapaneseStudiesRegistration = () => {
                 data={kotaList.map((item) => {
                   return { option: item, value: item };
                 })}
+              />
+              <PhoneNumberInput
+                form={form}
+                labelString={"Nomor Ponsel"}
+                inputName={"handphone"}
+              />
+              <TextInput
+                form={form}
+                labelString={"Nomor Telepon"}
+                inputName={"telephone"}
+                isRequired={false}
+              />
+              <TextInput
+                form={form}
+                labelString={"Email Aktif"}
+                inputName={"email"}
+                validation={handleEmailValidation}
+                notes={"E-mail yang terkoneksi dengan HP"}
               />
               <SelectInput
                 form={form}
