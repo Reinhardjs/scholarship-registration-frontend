@@ -31,7 +31,7 @@ const LandingPage = () => {
                     history.push("/student");
                   }}
                 >
-                  Japanese Studies
+                  Japanese Studies 2023
                 </button>
               </div>
             </div>
