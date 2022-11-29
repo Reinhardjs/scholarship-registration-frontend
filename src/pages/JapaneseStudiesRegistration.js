@@ -302,13 +302,13 @@ const JapaneseStudiesRegistration = () => {
                 })}
               />
 
-              <div class="mb-6 flex items-start pt-2">
-                <div class="flex h-5 items-center">
+              <div className="mb-6 flex items-start pt-2">
+                <div className="flex h-5 items-center">
                   <input
                     id="terms"
                     type="checkbox"
                     value=""
-                    class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
+                    className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
                     {...form.register("check1", {
                       required: true,
                     })}
@@ -316,7 +316,7 @@ const JapaneseStudiesRegistration = () => {
                 </div>
                 <label
                   for="terms"
-                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Pastikan Anda telah membaca prosedur persyaratan serta FAQ
                   pada website Kedutaan Besar Jepang
@@ -328,13 +328,13 @@ const JapaneseStudiesRegistration = () => {
                 </span>
               )}
 
-              <div class="mb-6 flex items-start">
-                <div class="flex h-5 items-center">
+              <div className="mb-6 flex items-start">
+                <div className="flex h-5 items-center">
                   <input
                     id="terms"
                     type="checkbox"
                     value=""
-                    class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
+                    className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 text-primary-600 focus:ring-red-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-red-600"
                     {...form.register("check2", {
                       required: true,
                     })}
@@ -342,7 +342,7 @@ const JapaneseStudiesRegistration = () => {
                 </div>
                 <label
                   for="terms"
-                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Periksa ulang jawaban Anda dan pastikan bahwa data sudah
                   terisi dengan benar. Data yang sudah di submit tidak akan bisa
