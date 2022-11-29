@@ -49,7 +49,16 @@ const TextInput = (props) => {
         onWheel={type === "number" ? (e) => e.target.blur() : undefined}
         disabled={isDisabled}
         {...conditionalProps}
-        {...register(inputName, { required: isRequired, validate: validation })}
+        {...register(inputName, {
+          onChange: (e) => {
+            if (type === "number") {
+              const deleteComma = e.target.value.replace(/,/g, "");
+              form.setValue(inputName, deleteComma);
+            }
+          },
+          required: isRequired,
+          validate: validation,
+        })}
       />
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
       {errors[inputName] &&
