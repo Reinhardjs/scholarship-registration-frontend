@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
-import TextInput from "../components/TextInput";
+import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
 import PhoneNumberInput from "../components/PhoneNumberInput";
 import DatePickerInput from "../components/DatePickerInput";
@@ -167,7 +167,7 @@ const TeacherTrainingRegistration = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 Teacher Training 2023
               </h1>
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Nama Lengkap"}
                 inputName={"name"}
@@ -191,7 +191,7 @@ const TeacherTrainingRegistration = () => {
                 maxDate={new Date()}
                 showCurrentAge
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
@@ -223,7 +223,7 @@ const TeacherTrainingRegistration = () => {
                 inputName={"telephone"}
                 isRequired={false}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Email Aktif"}
                 inputName={"email"}
@@ -238,7 +238,7 @@ const TeacherTrainingRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Universitas"}
                 inputName={"university"}
@@ -246,7 +246,7 @@ const TeacherTrainingRegistration = () => {
                   "Penulisan nama universitas dalam Bahasa Indonesia dan tidak disingkat"
                 }
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Jurusan"}
                 inputName={"major"}
@@ -254,7 +254,7 @@ const TeacherTrainingRegistration = () => {
                   "Penulisan nama jurusan dalam Bahasa Indonesia dan tidak disingkat"
                 }
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"IPK (Indeks Prestasi Kumulatif)"}
                 inputName={"ipk"}
@@ -275,7 +275,7 @@ const TeacherTrainingRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Skor Kemampuan Bahasa Inggris"}
                 inputName={"englishProficiencyScore"}
@@ -295,7 +295,7 @@ const TeacherTrainingRegistration = () => {
                   }
                 )}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Skor JLPT"}
                 inputName={"jlptScore"}
@@ -348,7 +348,7 @@ const TeacherTrainingRegistration = () => {
                   "Masa mengajar minimal 5 tahun 0 bulan pada 1 Oktober 2020"
                 }
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Sekolah Tempat Mengajar Saat Ini"}
                 inputName={"teachingLocation"}
@@ -372,7 +372,7 @@ const TeacherTrainingRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Mata Pelajaran yang Diampu"}
                 inputName={"teachingSubject"}

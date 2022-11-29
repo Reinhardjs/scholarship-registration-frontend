@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextInput = (props) => {
+const Input = (props) => {
   const {
     form,
     labelString,
@@ -71,4 +71,4 @@ const TextInput = (props) => {
   );
 };
 
-export default TextInput;
+export default Input;

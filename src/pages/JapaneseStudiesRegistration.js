@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 import calculateAge from "../utils/calculateAge";
-import TextInput from "../components/TextInput";
+import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
 import PhoneNumberInput from "../components/PhoneNumberInput";
 import DatePickerInput from "../components/DatePickerInput";
@@ -161,7 +161,7 @@ const JapaneseStudiesRegistration = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
                 Students Registration
               </h1>
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Nama Lengkap"}
                 inputName={"name"}
@@ -193,7 +193,7 @@ const JapaneseStudiesRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
@@ -225,7 +225,7 @@ const JapaneseStudiesRegistration = () => {
                 inputName={"telephone"}
                 isRequired={false}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"Email Aktif"}
                 inputName={"email"}
@@ -248,7 +248,7 @@ const JapaneseStudiesRegistration = () => {
                   return { option: item, value: item };
                 })}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"IPK (Indeks Prestasi Kumulatif)"}
                 inputName={"ipk"}
@@ -265,7 +265,7 @@ const JapaneseStudiesRegistration = () => {
                   }
                 )}
               />
-              <TextInput
+              <Input
                 form={form}
                 labelString={"JLPT Score"}
                 inputName={"jlptScore"}
