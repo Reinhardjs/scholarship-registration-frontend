@@ -150,7 +150,7 @@ const JapaneseStudiesRegistration = () => {
       <div className="grid h-screen place-items-center">
         <div className="min-w-full">
           <form
-            className="m-auto mt-10 mb-10 max-w-2xl rounded-lg border bg-white py-8 px-7 shadow"
+            className="m-auto mt-10 mb-10 max-w-2xl bg-white py-8 px-7"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
