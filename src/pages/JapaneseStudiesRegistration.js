@@ -97,7 +97,7 @@ const JapaneseStudiesRegistration = () => {
       const birthYear = parseInt(parts[0]);
       const birthMonth = parseInt(parts[1]);
       const birthDay = parseInt(parts[2]);
-      formData.age = calculateAge(birthYear, birthMonth, birthDay);
+      formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
 
       axios
         .post(
