@@ -94,6 +94,8 @@ const Modal = ({
                             !isSuccess &&
                             !isFailed &&
                             "Pastikan semua data yang ingin dikirimkan sudah terisi dengan benar"}
+                          {isSuccess &&
+                            "Silakan cek dan print out nomor ujian yang telah dikirimkan ke email Anda. Apabila tidak menerima email di folder inbox, silakan cek pada folder spam."}
                         </p>
                       </div>
                     </div>
