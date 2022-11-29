@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
+import calculateAge from "../utils/calculateAge";
 import TextInput from "../components/TextInput";
 import SelectInput from "../components/SelectInput";
 import PhoneNumberInput from "../components/PhoneNumberInput";
@@ -33,21 +34,6 @@ const JapaneseStudiesRegistration = () => {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
-
-  function calculateAge(birthYear, birthMonth, birthDay) {
-    var targetYear = 2023;
-    var targetMonth = 4;
-    var targetDay = 1;
-    var calculatedAge = targetYear - birthYear;
-
-    if (targetMonth < birthMonth) {
-      calculatedAge--;
-    }
-    if (birthMonth === targetMonth && targetDay < birthDay) {
-      calculatedAge--;
-    }
-    return calculatedAge;
-  }
 
   const isValidDate = (date) => {
     const LIMIT_AGE = 29;

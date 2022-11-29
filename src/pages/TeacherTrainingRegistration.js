@@ -156,7 +156,7 @@ const TeacherTrainingRegistration = () => {
                 />
               </div>
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
-                Teachers Registration
+                Teacher Training 2023
               </h1>
               <TextInput
                 form={form}
@@ -177,7 +177,8 @@ const TeacherTrainingRegistration = () => {
                 labelString={"Tanggal Lahir"}
                 inputName={"birthdate"}
                 validation={handleDateValidation}
-                notes={"Usia maksimal 29 tahun pada 1 April 2023"}
+                notes={"Usia maksimal 34 tahun pada 1 April 2023"}
+                showCurrentAge
               />
               <TextInput
                 form={form}
