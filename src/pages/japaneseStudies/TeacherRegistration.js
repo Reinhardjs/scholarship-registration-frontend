@@ -11,7 +11,7 @@ import DatePickerInput from "../../components/DatePickerInput";
 import Modal from "../../components/Modal";
 import SelectInput2 from "../../components/SelectInput2";
 
-const JapaneseStudiesTeacherRegistration = () => {
+const TeacherRegistration = () => {
   const [wilayahList, setWilayahList] = React.useState([]);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -480,4 +480,4 @@ const JapaneseStudiesTeacherRegistration = () => {
   );
 };
 
-export default JapaneseStudiesTeacherRegistration;
+export default TeacherRegistration;

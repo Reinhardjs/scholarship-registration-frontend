@@ -2,8 +2,8 @@ import "./App.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import JapaneseStudiesStudentRegistration from "./pages/japaneseStudies/JapaneseStudiesStudentRegistration";
-import JapaneseStudiesTeacherRegistration from "./pages/japaneseStudies/JapaneseStudiesTeacherRegistration";
+import StudentRegistration from "./pages/japaneseStudies/StudentRegistration";
+import TeacherRegistration from "./pages/japaneseStudies/TeacherRegistration";
 import LandingPage from "./pages/LandingPage";
 
 function App() {
@@ -13,10 +13,10 @@ function App() {
         <LandingPage />
       </Route>
       <Route path="/teacher">
-        <JapaneseStudiesTeacherRegistration />
+        <TeacherRegistration />
       </Route>
       <Route path="/student">
-        <JapaneseStudiesStudentRegistration />
+        <StudentRegistration />
       </Route>
     </Switch>
   );
