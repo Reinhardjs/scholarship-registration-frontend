@@ -6,8 +6,8 @@ const LandingPage = () => {
   return (
     <React.Fragment>
       <div className="flex h-screen">
-        <div className="mx-auto mt-[44%] w-full max-w-3xl sm:my-auto">
-          <div className="px-6 sm:-mt-12 md:px-0">
+        <div className="mx-auto my-auto w-full max-w-3xl sm:my-auto">
+          <div className="-mt-12 px-6 md:px-0">
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
               <h1 className="text-center text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-5xl">
                 BEASISWA MEXT
