@@ -421,10 +421,7 @@ const TeacherTrainingRegistration = () => {
                     })}
                   />
                 </div>
-                <label
-                  for="terms"
-                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
+                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                   Pastikan Anda telah membaca prosedur persyaratan serta FAQ
                   pada website Kedutaan Besar Jepang
                 </label>
@@ -447,10 +444,7 @@ const TeacherTrainingRegistration = () => {
                     })}
                   />
                 </div>
-                <label
-                  for="terms"
-                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
+                <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                   Periksa ulang jawaban Anda dan pastikan bahwa data sudah
                   terisi dengan benar. Data yang sudah di submit tidak akan bisa
                   diubah kembali.
