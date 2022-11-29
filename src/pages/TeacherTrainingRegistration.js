@@ -116,9 +116,9 @@ const TeacherTrainingRegistration = () => {
             setIsLoading(false);
             const { data } = response;
             console.log(data); // data is object
-            if (data === "Email Already Used") {
+            if (typeof data === "string") {
               setIsFailed(true);
-              setResponseMessage("Email ini sudah terdaftar");
+              setResponseMessage(data);
             } else {
               setIsSuccess(true);
               form.reset();
