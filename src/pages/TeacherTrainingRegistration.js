@@ -35,6 +35,10 @@ const TeacherTrainingRegistration = () => {
   const teachingCityList =
     filteredTeachingProvince.length > 0 ? filteredTeachingProvince[0].kota : [];
 
+  kotaList.sort();
+  teachingCityList.sort();
+  wilayahList.sort((a, b) => a.provinsi.localeCompare(b.provinsi));
+
   const isValidEmail = (email) =>
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email

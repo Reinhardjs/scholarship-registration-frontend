@@ -30,6 +30,10 @@ const JapaneseStudiesRegistration = () => {
   });
   const kotaList = filteredProvince.length > 0 ? filteredProvince[0].kota : [];
 
+  kotaList.sort();
+  universitasList.sort();
+  wilayahList.sort((a, b) => a.provinsi.localeCompare(b.provinsi));
+
   const isValidEmail = (email) =>
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
