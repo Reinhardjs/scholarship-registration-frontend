@@ -4,8 +4,16 @@ import Datepicker from "flowbite-datepicker/Datepicker";
 import calculateAge from "../utils/calculateAge";
 
 const DatePickerInput = (props) => {
-  const { form, labelString, inputName, notes, validation, showCurrentAge } =
-    props;
+  const {
+    form,
+    labelString,
+    inputName,
+    notes,
+    validation,
+    showCurrentAge,
+    maxDate,
+    minDate,
+  } = props;
   const {
     register,
     formState: { errors },
@@ -24,6 +32,8 @@ const DatePickerInput = (props) => {
     new Datepicker(datepickerEl, {
       format: "yyyy-mm-dd",
       autohide: true,
+      maxDate,
+      minDate,
     });
     datepickerEl.addEventListener("changeDate", triggerOnDateChanged);
 
