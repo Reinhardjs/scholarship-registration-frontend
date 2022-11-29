@@ -1,8 +1,15 @@
 import React from "react";
 
 const PhoneNumberInput = (props) => {
-  const { form, labelString, inputName, placeholder, validation, notes } =
-    props;
+  const {
+    form,
+    labelString,
+    inputName,
+    placeholder,
+    validation,
+    notes,
+    isRequired = true,
+  } = props;
   const {
     register,
     formState: { errors },
@@ -30,7 +37,7 @@ const PhoneNumberInput = (props) => {
               );
               form.setValue(inputName, deleteFirstZeroOfPhoneNumber);
             },
-            required: true,
+            required: isRequired,
             validate: validation,
           })}
         />

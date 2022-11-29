@@ -216,11 +216,10 @@ const JapaneseStudiesRegistration = () => {
                 labelString={"Nomor Ponsel"}
                 inputName={"handphone"}
               />
-              <TextInput
+              <PhoneNumberInput
                 form={form}
                 labelString={"Nomor Telepon"}
                 inputName={"telephone"}
-                type={"number"}
                 isRequired={false}
               />
               <TextInput
