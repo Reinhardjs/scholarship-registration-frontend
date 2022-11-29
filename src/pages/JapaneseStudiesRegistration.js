@@ -92,6 +92,13 @@ const JapaneseStudiesRegistration = () => {
     setTimeout(() => {
       console.log(formData);
       formData.handphone = "+62" + formData.handphone;
+
+      const parts = watch("birthdate").split("-");
+      const birthYear = parseInt(parts[0]);
+      const birthMonth = parseInt(parts[1]);
+      const birthDay = parseInt(parts[2]);
+      formData.age = calculateAge(birthYear, birthMonth, birthDay);
+
       axios
         .post(
           process.env["REACT_APP_API_ENDPOINT"] + "/japanese-studies/register",
