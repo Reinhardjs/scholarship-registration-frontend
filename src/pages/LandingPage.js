@@ -20,7 +20,7 @@ const LandingPage = () => {
                     history.push("/teacher");
                   }}
                 >
-                  Dosen
+                  Teacher Training 2023
                 </button>
               </div>
               <div className="pt-2.5">
@@ -31,7 +31,7 @@ const LandingPage = () => {
                     history.push("/student");
                   }}
                 >
-                  Mahasiswa
+                  Japanese Studies
                 </button>
               </div>
             </div>
