@@ -10,7 +10,7 @@ import PhoneNumberInput from "../components/PhoneNumberInput";
 import DatePickerInput from "../components/DatePickerInput";
 import Modal from "../components/Modal";
 
-const StudentRegistration = () => {
+const JapaneseStudiesRegistration = () => {
   const [universitasList, setUniversitasList] = React.useState([]);
   const [wilayahList, setWilayahList] = React.useState([]);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -388,4 +388,4 @@ const StudentRegistration = () => {
   );
 };
 
-export default StudentRegistration;
+export default JapaneseStudiesRegistration;
