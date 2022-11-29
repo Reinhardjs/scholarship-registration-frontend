@@ -92,6 +92,8 @@ const JapaneseStudiesRegistration = () => {
     setTimeout(() => {
       console.log(formData);
       formData.handphone = "+62" + formData.handphone;
+      if (formData.telephone !== "")
+        formData.telephone = "+62" + formData.telephone;
 
       const parts = watch("birthdate").split("-");
       const birthYear = parseInt(parts[0]);

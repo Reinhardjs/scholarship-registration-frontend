@@ -97,6 +97,8 @@ const TeacherTrainingRegistration = () => {
     setTimeout(() => {
       console.log(formData);
       formData.handphone = "+62" + formData.handphone;
+      if (formData.telephone !== "")
+        formData.telephone = "+62" + formData.telephone;
       formData.teachingTime =
         formData.teachingYears + " " + formData.teachingMonths;
 
