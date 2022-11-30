@@ -24,6 +24,16 @@ module.exports = {
           900: "#881337",
         },
       },
+      animation: {
+        loader: "loader 2s infinite alternate",
+      },
+      keyframes: {
+        loader: {
+          to: {
+            transform: "translate3d(0, -0.75rem, 0)",
+          },
+        },
+      },
     },
     fontFamily: {
       body: [
