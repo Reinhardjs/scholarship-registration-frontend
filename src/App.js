@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import JapaneseStudiesRegistration from "./pages/JapaneseStudiesRegistration";
 import TeacherTrainingRegistration from "./pages/TeacherTrainingRegistration";
 import LandingPage from "./pages/LandingPage";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
       </Route>
       <Route path="/student">
         <JapaneseStudiesRegistration />
+      </Route>
+      <Route path="/admin">
+        <Admin />
       </Route>
     </Switch>
   );
