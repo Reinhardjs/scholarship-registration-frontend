@@ -105,29 +105,24 @@ const JapaneseStudiesRegistration = () => {
       const birthDay = parseInt(parts[2]);
       formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
 
-      axios
-        .post(
-          process.env["REACT_APP_API_ENDPOINT"] + "/japanese-studies/register",
-          formData
-        )
-        .then(
-          (response) => {
-            setIsLoading(false);
-            const { data } = response;
-            console.log(data); // data is object
-            if (typeof data === "string") {
-              setIsFailed(true);
-              setResponseMessage(data);
-            } else {
-              setIsSuccess(true);
-              form.reset();
-            }
-          },
-          (error) => {
-            console.log(error);
-            alert(JSON.stringify(error));
+      axios.post("/japanese-studies/register", formData).then(
+        (response) => {
+          setIsLoading(false);
+          const { data } = response;
+          console.log(data); // data is object
+          if (typeof data === "string") {
+            setIsFailed(true);
+            setResponseMessage(data);
+          } else {
+            setIsSuccess(true);
+            form.reset();
           }
-        );
+        },
+        (error) => {
+          console.log(error);
+          alert(JSON.stringify(error));
+        }
+      );
     }, 1000);
   };
 
