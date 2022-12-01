@@ -26,7 +26,7 @@ const Admin = () => {
   };
 
   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  if (isLoggedIn === "false") {
+  if (isLoggedIn === "false" || !isLoggedIn) {
     return <Login />;
   } else {
     return (
