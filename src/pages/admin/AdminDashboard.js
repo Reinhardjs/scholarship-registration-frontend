@@ -1,22 +1,343 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Spinner } from "flowbite-react";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 const AdminDashboard = () => {
-  const history = useHistory();
   const [teacherTrainings, setTeacherTrainings] = useState([]);
-  useEffect(() => {
-    axios.post("/admin/teacher-training/view").then(
+  const [japaneseStudies, setJapaneseStudies] = useState([]);
+  const [selectedTable, setSelectedTable] = useState(0);
+  const [count, setCount] = useState(0);
+  const TEACHER_TRAINING = 0;
+  const JAPANESE_STUDIES = 1;
+  const SELECTED_STYLE = `flex w-full cursor-pointer grid-cols-2 rounded-full bg-primary-600 px-5 py-4 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`;
+  const NONSELECTED_STYLE = `flex w-full cursor-pointer grid-cols-2 rounded-full border bg-white px-5 py-4 text-sm font-medium shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`;
+
+  const handleSignOut = () => {
+    axios.post("/admin/logout").then(
       (response) => {
-        const { data } = response;
-        setTeacherTrainings(data.data);
-        console.log(data); // data is object
+        localStorage.setItem("isLoggedIn", false);
+        window.location.reload();
+        console.log(response);
       },
       (error) => {
         console.log(error);
       }
     );
+  };
+
+  const doJapaneseStudiesRequest = () => {
+    axios.post("/admin/japanese-studies/view").then(
+      (response) => {
+        const { data } = response;
+        if (!Array.isArray(data.data)) {
+          handleSignOut();
+          return;
+        }
+
+        setJapaneseStudies(data.data);
+        console.log(data); // data is object
+        setCount(count + 1);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+
+  const doTeacherTrainingsRequest = () => {
+    axios.post("/admin/teacher-training/view").then(
+      (response) => {
+        const { data } = response;
+        if (!Array.isArray(data.data)) {
+          handleSignOut();
+          return;
+        }
+
+        setTeacherTrainings(data.data);
+        console.log(data); // data is object
+        setCount(count + 1);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+
+  const downloadTeacherTrainings = () => {
+    axios
+      .get("/admin/teacher-training/download-excel", {
+        responseType: "blob",
+        timeout: 30000,
+      })
+      .then(
+        (response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "teacher-training.xlsx");
+          document.body.appendChild(link);
+          link.click();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+
+  const downloadJapaneseStudies = () => {
+    axios
+      .get("/admin/japanese-studies/download-excel", {
+        responseType: "blob",
+        timeout: 30000,
+      })
+      .then(
+        (response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "japanese-studies.xlsx"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+
+  useEffect(() => {
+    doTeacherTrainingsRequest();
+    doJapaneseStudiesRequest();
   }, []);
+
+  const renderTeacherTrainingsTable = () => {
+    return (
+      <table className="w-full table-fixed text-left text-sm text-gray-500 dark:text-gray-400">
+        <thead className="bg-gray-200 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+          <tr className=" [&>*:nth-child(n)]:py-3 [&>*:nth-child(n)]:px-6 [&>*:nth-child(n)]:text-black">
+            <th scope="col" className="w-[100px]">
+              Test ID
+            </th>
+            <th scope="col" className="w-[250px]">
+              Nama Lengkap
+            </th>
+            <th scope="col" className="w-[175px]">
+              Jenis Kelamin
+            </th>
+            <th scope="col" className="w-[150px]">
+              Tanggal Lahir
+            </th>
+            <th scope="col" className="w-[125px]">
+              Usia
+            </th>
+            <th scope="col" className="w-[300px]">
+              Alamat Tempat Tinggal Sekarang
+            </th>
+            <th scope="col" className="w-[175px]">
+              Propinsi
+            </th>
+            <th scope="col" className="w-[175px]">
+              Kota/Kabupaten
+            </th>
+            <th scope="col" className="w-[175px]">
+              Nomor Ponsel Aktif
+            </th>
+            <th scope="col" className="w-[175px]">
+              Nomor Telepon
+            </th>
+            <th scope="col" className="w-[250px]">
+              Email Aktif
+            </th>
+            <th scope="col" className="w-[125px]">
+              Pendidikan Terakhir
+            </th>
+            <th scope="col" className="w-[250px]">
+              Universitas
+            </th>
+            <th scope="col" className="w-[175px]">
+              Jurusan
+            </th>
+            <th scope="col" className="w-[175px]">
+              IPK
+            </th>
+            <th scope="col" className="w-[175px]">
+              Kemampuan Bahasa Inggris
+            </th>
+            <th scope="col" className="w-[175px]">
+              Skor Bahasa Inggris
+            </th>
+            <th scope="col" className="w-[175px]">
+              JLPT
+            </th>
+            <th scope="col" className="w-[175px]">
+              Skor JLPT
+            </th>
+            <th scope="col" className="w-[175px]">
+              Total Masa Mengajar
+            </th>
+            <th scope="col" className="w-[175px]">
+              Sekolah Tempat Mengajar Saat Ini
+            </th>
+            <th scope="col" className="w-[175px]">
+              Propinsi Mengajar
+            </th>
+            <th scope="col" className="w-[175px]">
+              Kota Mengajar
+            </th>
+            <th scope="col" className="w-[175px]">
+              Mata Pelajaran yang Diampu
+            </th>
+            <th scope="col" className="w-[175px]">
+              Lokasi Ujian Tulis
+            </th>
+            <th scope="col" className="w-[175px]">
+              Mendapat Informasi Beasiswa dari
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {teacherTrainings.map((item, key) => {
+            return (
+              <tr
+                key={key}
+                className="border-b bg-white dark:border-gray-700 dark:bg-gray-800 [&>*:nth-child(n)]:break-words [&>*:nth-child(n)]:py-3 [&>*:nth-child(n)]:px-6 [&>*:nth-child(n)]:font-normal [&>*:nth-child(n)]:text-black"
+              >
+                <td className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white">
+                  {item.testId}
+                </td>
+                <td>{item.name}</td>
+                <td>{item.gender}</td>
+                <td>{item.birthdate.split("T00")[0]}</td>
+                <td>{item.age} Tahun</td>
+                <td>{item.address}</td>
+                <td>{item.province}</td>
+                <td>{item.city}</td>
+                <td>{item.handphone}</td>
+                <td>{item.telephone}</td>
+                <td>{item.email}</td>
+                <td>{item.lastEducation}</td>
+                <td>{item.university}</td>
+                <td>{item.major}</td>
+                <td>{item.ipk}</td>
+                <td>{item.englishProficiency}</td>
+                <td>{item.englishProficiencyScore}</td>
+                <td>{item.jlpt}</td>
+                <td>{item.jlptScore}</td>
+                <td>{item.teachingTime}</td>
+                <td>{item.teachingLocation}</td>
+                <td>{item.teachingProvince}</td>
+                <td>{item.teachingCity}</td>
+                <td>{item.teachingSubject}</td>
+                <td>{item.testLocation}</td>
+                <td>{item.infoFrom}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderJapaneseStudiesTable = () => {
+    return (
+      <table className="w-full table-fixed text-left text-sm text-gray-500 dark:text-gray-400">
+        <thead className="bg-gray-200 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+          <tr className=" [&>*:nth-child(n)]:py-3 [&>*:nth-child(n)]:px-6 [&>*:nth-child(n)]:text-black">
+            <th scope="col" className="w-[100px]">
+              Test ID
+            </th>
+            <th scope="col" className="w-[250px]">
+              Nama Lengkap
+            </th>
+            <th scope="col" className="w-[175px]">
+              Jenis Kelamin
+            </th>
+            <th scope="col" className="w-[150px]">
+              Tanggal Lahir
+            </th>
+            <th scope="col" className="w-[125px]">
+              Usia
+            </th>
+            <th scope="col" className="w-[175px]">
+              Status WNJ
+            </th>
+            <th scope="col" className="w-[300px]">
+              Alamat Tempat Tinggal
+            </th>
+            <th scope="col" className="w-[175px]">
+              Provinsi
+            </th>
+            <th scope="col" className="w-[175px]">
+              Kota/Kabupaten
+            </th>
+            <th scope="col" className="w-[175px]">
+              Nomor Ponsel
+            </th>
+            <th scope="col" className="w-[175px]">
+              Nomor Telepon
+            </th>
+            <th scope="col" className="w-[250px]">
+              Email
+            </th>
+            <th scope="col" className="w-[250px]">
+              Universitas
+            </th>
+            <th scope="col" className="w-[175px]">
+              Semester
+            </th>
+            <th scope="col" className="w-[175px]">
+              IPK
+            </th>
+            <th scope="col" className="w-[175px]">
+              JLPT
+            </th>
+            <th scope="col" className="w-[175px]">
+              JLPT Score
+            </th>
+            <th scope="col" className="w-[175px]">
+              Lokasi Ujian Tulis
+            </th>
+            <th scope="col" className="w-[175px]">
+              Mendapat Informasi Beasiswa Dari
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {japaneseStudies.map((item, key) => {
+            return (
+              <tr
+                key={key}
+                className="border-b bg-white dark:border-gray-700 dark:bg-gray-800 [&>*:nth-child(n)]:py-3 [&>*:nth-child(n)]:px-6 [&>*:nth-child(n)]:font-normal [&>*:nth-child(n)]:text-black"
+              >
+                <td className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white">
+                  {item.testId}
+                </td>
+                <td>{item.name}</td>
+                <td>{item.gender}</td>
+                <td>{item.birthdate.split("T00")[0]}</td>
+                <td>{item.age}</td>
+                <td>{item.japaneseResident}</td>
+                <td>{item.address}</td>
+                <td>{item.province}</td>
+                <td>{item.city}</td>
+                <td>{item.handphone}</td>
+                <td>{item.telephone}</td>
+                <td>{item.email}</td>
+                <td>{item.university}</td>
+                <td>{item.semester}</td>
+                <td>{item.ipk}</td>
+                <td>{item.jlpt}</td>
+                <td>{item.jlptScore}</td>
+                <td>{item.testLocation}</td>
+                <td>{item.infoFrom}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
 
   return (
     <section className="px-4 text-gray-600 antialiased" x-data="app">
@@ -25,10 +346,14 @@ const AdminDashboard = () => {
           <div className="grid sm:grid-cols-2 sm:gap-8 sm:pt-4">
             <div className="pt-2.5 sm:duration-200 sm:hover:translate-y-2">
               <div
-                className="flex w-full cursor-pointer grid-cols-2 rounded-full bg-primary-600 px-5 py-4 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className={
+                  selectedTable === TEACHER_TRAINING
+                    ? SELECTED_STYLE
+                    : NONSELECTED_STYLE
+                }
                 type="submit"
                 onClick={() => {
-                  //   history.push("/");
+                  setSelectedTable(TEACHER_TRAINING);
                 }}
               >
                 <img
@@ -45,10 +370,14 @@ const AdminDashboard = () => {
             </div>
             <div className="mt-4 pt-2.5 sm:mt-0 sm:duration-200 sm:hover:translate-y-2">
               <div
-                className="flex w-full cursor-pointer grid-cols-2 rounded-full border bg-white px-5 py-4 text-sm font-medium shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className={
+                  selectedTable === JAPANESE_STUDIES
+                    ? SELECTED_STYLE
+                    : NONSELECTED_STYLE
+                }
                 type="submit"
                 onClick={() => {
-                  //   history.push("/");
+                  setSelectedTable(JAPANESE_STUDIES);
                 }}
               >
                 <img
@@ -66,185 +395,30 @@ const AdminDashboard = () => {
           </div>
 
           <div className="mt-10 rounded-xl border border-gray-200 bg-white shadow-lg">
-            <header className="border-b border-gray-100 px-5 py-4">
-              <div className="font-semibold text-gray-800">
-                Japanese Teacher Trainings
+            <header className="flex justify-between border-b border-gray-100 px-6 py-4">
+              <div className="text-lg font-extrabold text-gray-800">
+                {selectedTable === TEACHER_TRAINING && "Teacher Training 2023"}
+                {selectedTable === JAPANESE_STUDIES && "Japanese Studies 2023"}
               </div>
+              <ArrowDownTrayIcon
+                className="h-8 w-8 cursor-pointer"
+                onClick={() => {
+                  if (selectedTable === TEACHER_TRAINING) {
+                    downloadTeacherTrainings();
+                  } else downloadJapaneseStudies();
+                }}
+              />
             </header>
             <div className="relative overflow-x-auto">
-              <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-                <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                    <th scope="col" className="py-3 px-6">
-                      Test ID
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Name
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Gender
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Age
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Birthdate
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Province
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      City
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Address
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Telephone
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Handphone
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Email
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Last Education
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      University
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Major
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      IPK
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      English Proficiency
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      English Proficiency Score
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      JLPT
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      JLPT Score
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Teaching Time
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Teaching Location
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Teaching Province
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Teaching City
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Teaching Subject
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Info From
-                    </th>
-                    <th scope="col" className="py-3 px-6">
-                      Test Location
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teacherTrainings.map((item, key) => {
-                    return (
-                      <tr
-                        key={key}
-                        className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-                      >
-                        <td className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white">
-                          {item.testId}
-                        </td>
-                        <th scope="col" className="py-3 px-6">
-                          {item.name}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.gender}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.age}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.birthdate}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.province}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.city}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.address}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.telephone}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.handphone}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.email}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.lastEducation}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.university}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.major}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.ipk}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.englishProficiency}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.englishProficiencyScore}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.jlpt}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.jlptScore}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.teachingTime}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.teachingLocation}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.teachingProvince}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.teachingCity}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.teachingSubject}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.infoFrom}
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                          {item.testLocation}
-                        </th>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              {count === 2 && (
+                <div className="mb-8 mt-4 flex animate-pulse items-center justify-center">
+                  <Spinner color="failure" size="xl" />
+                </div>
+              )}
+              {selectedTable === TEACHER_TRAINING &&
+                renderTeacherTrainingsTable()}
+              {selectedTable === JAPANESE_STUDIES &&
+                renderJapaneseStudiesTable()}
             </div>
           </div>
         </div>
