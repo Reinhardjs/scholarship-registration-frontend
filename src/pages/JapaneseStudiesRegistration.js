@@ -108,11 +108,7 @@ const JapaneseStudiesRegistration = () => {
       if (formData.telephone !== "")
         formData.telephone = "+62" + formData.telephone;
 
-      // const parts = watch("birthdate").split("-");
-      // const birthYear = parseInt(parts[0]);
-      // const birthMonth = parseInt(parts[1]);
-      // const birthDay = parseInt(parts[2]);
-      // formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
+      formData.age = formData.age.toString();
 
       axios.post("/japanese-studies/register", formData).then(
         (response) => {
