@@ -9,11 +9,11 @@ const LandingPage = () => {
         className="flex h-screen w-full bg-contain bg-fixed bg-top bg-no-repeat bg-origin-padding p-8"
         style={{ backgroundImage: `url("/images/intersect.svg")` }}
       >
-        <div className="mx-auto my-auto w-full max-w-3xl">
+        <div className="mx-auto my-auto w-full max-w-4xl">
           <div className="px-6 md:px-0">
             <div className="space-y-4 p-2 sm:p-4 md:space-y-6">
-              <h1 className="mt-28 text-center text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:mt-0 sm:text-6xl">
-                BEASISWA MEXT
+              <h1 className="text-center text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:mt-0 sm:text-4xl md:text-5xl lg:pt-20">
+                PENDAFTARAN BEASISWA MEXT
               </h1>
               <div className="grid sm:grid-cols-2 sm:gap-8 sm:pt-4">
                 <div className="pt-2.5 sm:duration-200 sm:hover:translate-y-2">
