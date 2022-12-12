@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
+import calculateAge from "../utils/calculateAge";
 import Input from "../components/Input";
 import SelectInput from "../components/SelectInput";
 import PhoneNumberInput from "../components/PhoneNumberInput";
@@ -20,6 +21,7 @@ const TeacherTrainingRegistration = () => {
   const [responseMessage, setResponseMessage] = React.useState("");
   const [formData, setFormData] = React.useState();
 
+  var calculatedAge;
   const form = useForm();
   const history = useHistory();
   const { handleSubmit, watch } = form;
@@ -39,25 +41,18 @@ const TeacherTrainingRegistration = () => {
   teachingCityList.sort();
   wilayahList.sort((a, b) => a.provinsi.localeCompare(b.provinsi));
 
+  if (form.watch("birthdate") && form.watch("birthdate") !== "") {
+    const parts = form.watch("birthdate").split("-");
+    const birthYear = parseInt(parts[0]);
+    const birthMonth = parseInt(parts[1]);
+    const birthDay = parseInt(parts[2]);
+    calculatedAge = calculateAge(birthYear, birthMonth, birthDay);
+  }
+
   const isValidEmail = (email) =>
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
-
-  function calculateAge(birthYear, birthMonth, birthDay) {
-    var targetYear = 2023;
-    var targetMonth = 4;
-    var targetDay = 1;
-    var calculatedAge = targetYear - birthYear;
-
-    if (targetMonth < birthMonth) {
-      calculatedAge--;
-    }
-    if (birthMonth === targetMonth && targetDay < birthDay) {
-      calculatedAge--;
-    }
-    return calculatedAge;
-  }
 
   const isValidDate = (date) => {
     const LIMIT_AGE = 34;
@@ -106,11 +101,11 @@ const TeacherTrainingRegistration = () => {
       formData.teachingTime =
         formData.teachingYears + " " + formData.teachingMonths;
 
-      const parts = watch("birthdate").split("-");
-      const birthYear = parseInt(parts[0]);
-      const birthMonth = parseInt(parts[1]);
-      const birthDay = parseInt(parts[2]);
-      formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
+      // const parts = watch("birthdate").split("-");
+      // const birthYear = parseInt(parts[0]);
+      // const birthMonth = parseInt(parts[1]);
+      // const birthDay = parseInt(parts[2]);
+      // formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
 
       axios.post("/teacher-training/register", formData).then(
         (response) => {
@@ -188,7 +183,15 @@ const TeacherTrainingRegistration = () => {
                 notes={"Usia maksimal 34 tahun pada 1 April 2023"}
                 minDate={new Date("04-01-1989")}
                 maxDate={new Date()}
-                showCurrentAge
+              />
+              <Input
+                form={form}
+                labelString={"Usia"}
+                inputName={"age"}
+                value={calculatedAge}
+                placeholder={"Usia akan terisi otomatis"}
+                notes={"Usia Anda pada 1 April 2023"}
+                isEditable={false}
               />
               <Input
                 form={form}
@@ -344,7 +347,7 @@ const TeacherTrainingRegistration = () => {
                   return { option: item, value: item };
                 })}
                 notes={
-                  "Masa mengajar minimal 5 tahun 0 bulan pada 1 Oktober 2020"
+                  "Masa mengajar minimal 5 tahun 0 bulan pada 1 Oktober 2023"
                 }
               />
               <Input

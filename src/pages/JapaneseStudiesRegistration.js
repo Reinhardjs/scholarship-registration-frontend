@@ -21,6 +21,7 @@ const JapaneseStudiesRegistration = () => {
   const [responseMessage, setResponseMessage] = React.useState("");
   const [formData, setFormData] = React.useState();
 
+  var calculatedAge;
   const form = useForm();
   const history = useHistory();
   const { handleSubmit, watch } = form;
@@ -33,6 +34,14 @@ const JapaneseStudiesRegistration = () => {
   kotaList.sort();
   universitasList.sort();
   wilayahList.sort((a, b) => a.provinsi.localeCompare(b.provinsi));
+
+  if (form.watch("birthdate") && form.watch("birthdate") !== "") {
+    const parts = form.watch("birthdate").split("-");
+    const birthYear = parseInt(parts[0]);
+    const birthMonth = parseInt(parts[1]);
+    const birthDay = parseInt(parts[2]);
+    calculatedAge = calculateAge(birthYear, birthMonth, birthDay);
+  }
 
   const isValidEmail = (email) =>
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -99,11 +108,11 @@ const JapaneseStudiesRegistration = () => {
       if (formData.telephone !== "")
         formData.telephone = "+62" + formData.telephone;
 
-      const parts = watch("birthdate").split("-");
-      const birthYear = parseInt(parts[0]);
-      const birthMonth = parseInt(parts[1]);
-      const birthDay = parseInt(parts[2]);
-      formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
+      // const parts = watch("birthdate").split("-");
+      // const birthYear = parseInt(parts[0]);
+      // const birthMonth = parseInt(parts[1]);
+      // const birthDay = parseInt(parts[2]);
+      // formData.age = calculateAge(birthYear, birthMonth, birthDay).toString();
 
       axios.post("/japanese-studies/register", formData).then(
         (response) => {
@@ -182,7 +191,15 @@ const JapaneseStudiesRegistration = () => {
                 notes={"Usia maksimal 29 tahun pada 1 April 2023"}
                 minDate={new Date("04-01-1994")}
                 maxDate={new Date()}
-                showCurrentAge
+              />
+              <Input
+                form={form}
+                labelString={"Usia"}
+                inputName={"age"}
+                value={calculatedAge}
+                placeholder={"Usia akan terisi otomatis"}
+                notes={"Usia Anda pada 1 April 2023"}
+                isEditable={false}
               />
               <SelectInput
                 form={form}
