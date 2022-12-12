@@ -193,6 +193,7 @@ const TeacherTrainingRegistration = () => {
                 form={form}
                 labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
+                autoUppercase={false}
               />
               <SelectInput
                 form={form}
@@ -226,6 +227,7 @@ const TeacherTrainingRegistration = () => {
                 labelString={"Email Aktif"}
                 inputName={"email"}
                 validation={handleEmailValidation}
+                autoUppercase={false}
                 notes={"E-mail yang terkoneksi dengan HP"}
               />
               <SelectInput

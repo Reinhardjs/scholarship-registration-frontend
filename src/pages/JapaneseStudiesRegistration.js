@@ -209,6 +209,7 @@ const JapaneseStudiesRegistration = () => {
                 form={form}
                 labelString={"Alamat tempat tinggal sekarang"}
                 inputName={"address"}
+                autoUppercase={false}
               />
               <SelectInput
                 form={form}
@@ -242,6 +243,7 @@ const JapaneseStudiesRegistration = () => {
                 labelString={"Email Aktif"}
                 inputName={"email"}
                 validation={handleEmailValidation}
+                autoUppercase={false}
                 notes={"E-mail yang terkoneksi dengan HP"}
               />
               <SelectInput

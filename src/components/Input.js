@@ -10,6 +10,7 @@ const Input = (props) => {
     isRequired = true,
     isDisabled = false,
     isEditable = true,
+    autoUppercase = true,
     type = "text",
     value,
     notes,
@@ -60,6 +61,15 @@ const Input = (props) => {
             if (type === "number") {
               const deleteComma = e.target.value.replace(/,/g, "");
               form.setValue(inputName, deleteComma);
+            } else {
+              if (autoUppercase) {
+                const toTitleCase = e.target.value
+                  .toLowerCase()
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ");
+                form.setValue(inputName, toTitleCase);
+              }
             }
           },
           required: isRequired,
