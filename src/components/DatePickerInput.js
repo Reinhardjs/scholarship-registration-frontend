@@ -1,19 +1,9 @@
 import React from "react";
 import Datepicker from "flowbite-datepicker/Datepicker";
 
-import calculateAge from "../utils/calculateAge";
-
 const DatePickerInput = (props) => {
-  const {
-    form,
-    labelString,
-    inputName,
-    notes,
-    validation,
-    showCurrentAge,
-    maxDate,
-    minDate,
-  } = props;
+  const { form, labelString, inputName, notes, validation, maxDate, minDate } =
+    props;
   const {
     register,
     formState: { errors },
@@ -41,16 +31,6 @@ const DatePickerInput = (props) => {
       datepickerEl.removeEventListener("changeDate", triggerOnDateChanged);
     };
   }, [triggerOnDateChanged]);
-
-  var calculatedAge = -1;
-
-  if (form.watch(inputName) && form.watch(inputName) !== "") {
-    const parts = form.watch(inputName).split("-");
-    const birthYear = parseInt(parts[0]);
-    const birthMonth = parseInt(parts[1]);
-    const birthDay = parseInt(parts[2]);
-    calculatedAge = calculateAge(birthYear, birthMonth, birthDay);
-  }
 
   return (
     <div>
@@ -85,9 +65,6 @@ const DatePickerInput = (props) => {
         />
       </div>
       {notes && <p className="ml-1 text-sm italic">{notes}</p>}
-      {showCurrentAge && form.watch(inputName) && (
-        <p className="ml-1 text-sm italic">{`Usia Anda ${calculatedAge} tahun pada 1 April 2023`}</p>
-      )}
       {errors[inputName] &&
         (errors[inputName].type === "validate" ? (
           <span className="text-red-600">{labelString} tidak valid</span>
