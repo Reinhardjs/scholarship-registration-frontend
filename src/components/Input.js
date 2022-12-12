@@ -9,7 +9,9 @@ const Input = (props) => {
     validation,
     isRequired = true,
     isDisabled = false,
+    isEditable = true,
     type = "text",
+    value,
     notes,
   } = props;
   const {
@@ -34,6 +36,10 @@ const Input = (props) => {
     }
   }
 
+  if (value) {
+    form.setValue(inputName, value);
+  }
+
   return (
     <div className="text-input-container">
       <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -47,7 +53,7 @@ const Input = (props) => {
         } p-2.5 text-gray-900 focus:border-gray-900 focus:ring-gray-900  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-900 dark:focus:ring-gray-900 sm:text-sm`}
         placeholder={placeholder}
         onWheel={type === "number" ? (e) => e.target.blur() : undefined}
-        disabled={isDisabled}
+        disabled={isDisabled || !isEditable}
         {...conditionalProps}
         {...register(inputName, {
           onChange: (e) => {
