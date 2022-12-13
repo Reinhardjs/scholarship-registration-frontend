@@ -177,8 +177,8 @@ const TeacherTrainingRegistration = () => {
                 inputName={"birthdate"}
                 validation={handleDateValidation}
                 notes={"Usia maksimal 34 tahun pada 1 April 2023"}
-                minDate={new Date("04-01-1989")}
-                maxDate={new Date()}
+                minDate={new Date("04-02-1988")}
+                maxDate={new Date("04-01-2003")}
               />
               <Input
                 form={form}
