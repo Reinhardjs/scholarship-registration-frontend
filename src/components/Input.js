@@ -63,11 +63,7 @@ const Input = (props) => {
               form.setValue(inputName, deleteComma);
             } else {
               if (autoUppercase) {
-                const toTitleCase = e.target.value
-                  .toLowerCase()
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ");
+                const toTitleCase = e.target.value.toUpperCase()
                 form.setValue(inputName, toTitleCase);
               }
             }
