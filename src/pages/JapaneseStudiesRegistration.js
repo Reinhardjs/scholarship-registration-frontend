@@ -11,6 +11,8 @@ import PhoneNumberInput from "../components/PhoneNumberInput";
 import DatePickerInput from "../components/DatePickerInput";
 import Modal from "../components/Modal";
 
+axios.defaults.withCredentials = true;
+
 const JapaneseStudiesRegistration = () => {
   const [universitasList, setUniversitasList] = React.useState([]);
   const [wilayahList, setWilayahList] = React.useState([]);

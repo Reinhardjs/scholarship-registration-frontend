@@ -12,6 +12,8 @@ import DatePickerInput from "../components/DatePickerInput";
 import Modal from "../components/Modal";
 import SelectInput2 from "../components/SelectInput2";
 
+axios.defaults.withCredentials = true;
+
 const TeacherTrainingRegistration = () => {
   const [wilayahList, setWilayahList] = React.useState([]);
   const [isModalOpen, setIsModalOpen] = React.useState(false);

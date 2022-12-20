@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
+axios.defaults.withCredentials = true;
 
 const AdminDashboard = () => {
   const [teacherTrainings, setTeacherTrainings] = useState([]);
