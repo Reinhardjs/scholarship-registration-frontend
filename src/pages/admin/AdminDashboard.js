@@ -66,7 +66,7 @@ const AdminDashboard = () => {
 
   const downloadTeacherTrainings = () => {
     axios
-      .get("/admin/teacher-training/download-excel", {
+      .get("https://api.daftarbeasiswamext.com/admin/teacher-training/download-excel", {
         responseType: "blob",
         timeout: 30000,
       })
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
 
   const downloadJapaneseStudies = () => {
     axios
-      .get("/admin/japanese-studies/download-excel", {
+      .get("https://api.daftarbeasiswamext.com/admin/japanese-studies/download-excel", {
         responseType: "blob",
         timeout: 30000,
       })
