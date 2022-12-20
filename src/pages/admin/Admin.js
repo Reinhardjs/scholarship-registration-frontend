@@ -13,7 +13,7 @@ import Login from "../auth/Login";
 
 const Admin = () => {
   const handleSignOut = () => {
-    axios.post("/admin/logout").then(
+    axios.post("https://api.daftarbeasiswamext.com/admin/logout").then(
       (response) => {
         localStorage.setItem("isLoggedIn", false);
         window.location.reload();

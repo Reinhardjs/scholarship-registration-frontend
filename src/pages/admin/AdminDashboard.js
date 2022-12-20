@@ -14,7 +14,7 @@ const AdminDashboard = () => {
   const NONSELECTED_STYLE = `flex w-full cursor-pointer grid-cols-2 rounded-full border bg-white px-5 py-4 text-sm font-medium shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`;
 
   const handleSignOut = () => {
-    axios.post("/admin/logout").then(
+    axios.post("https://api.daftarbeasiswamext.com/admin/logout").then(
       (response) => {
         localStorage.setItem("isLoggedIn", false);
         window.location.reload();
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   };
 
   const doJapaneseStudiesRequest = () => {
-    axios.post("/admin/japanese-studies/view").then(
+    axios.post("https://api.daftarbeasiswamext.com/admin/japanese-studies/view").then(
       (response) => {
         const { data } = response;
         if (!Array.isArray(data.data)) {
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
   };
 
   const doTeacherTrainingsRequest = () => {
-    axios.post("/admin/teacher-training/view").then(
+    axios.post("https://api.daftarbeasiswamext.com/admin/teacher-training/view").then(
       (response) => {
         const { data } = response;
         if (!Array.isArray(data.data)) {
