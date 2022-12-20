@@ -110,7 +110,7 @@ const JapaneseStudiesRegistration = () => {
 
       formData.age = formData.age.toString();
 
-      axios.post("/japanese-studies/register", formData).then(
+      axios.post("https://api.daftarbeasiswamext.com/japanese-studies/register", formData).then(
         (response) => {
           setIsLoading(false);
           const { data } = response;

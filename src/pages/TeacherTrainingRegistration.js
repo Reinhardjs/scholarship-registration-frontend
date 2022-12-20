@@ -103,7 +103,7 @@ const TeacherTrainingRegistration = () => {
 
       formData.age = formData.age.toString();
 
-      axios.post("/teacher-training/register", formData).then(
+      axios.post("https://api.daftarbeasiswamext.com/teacher-training/register", formData).then(
         (response) => {
           setIsLoading(false);
           const { data } = response;
