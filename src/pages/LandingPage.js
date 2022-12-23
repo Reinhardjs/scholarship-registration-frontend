@@ -18,7 +18,7 @@ const LandingPage = () => {
               <div className="grid sm:grid-cols-2 sm:gap-8 sm:pt-4">
                 <div className="pt-2.5 sm:duration-200 sm:hover:translate-y-2">
                   <div
-                    className="flex w-full cursor-pointer grid-cols-2 rounded-full bg-primary-600 px-5 py-4 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    className="flex h-full w-full cursor-pointer grid-cols-2 rounded-full bg-primary-600 px-5 py-8 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:py-4"
                     type="submit"
                     onClick={() => {
                       history.push("/teacher");
@@ -37,7 +37,7 @@ const LandingPage = () => {
                 </div>
                 <div className="mt-4 pt-2.5 sm:mt-0 sm:duration-200 sm:hover:translate-y-2">
                   <div
-                    className="flex w-full cursor-pointer grid-cols-2 rounded-full border bg-white px-5 py-4 text-sm font-medium shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    className="flex h-full w-full cursor-pointer grid-cols-2 rounded-full border bg-white px-5 py-8 text-sm font-medium shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:py-4"
                     type="submit"
                     onClick={() => {
                       history.push("/student");
@@ -50,7 +50,7 @@ const LandingPage = () => {
                       src="/images/student.png"
                     />
                     <p className="m-auto grow text-center text-lg">
-                      Japanese Studies 2023
+                      Japanese Studies 2023 (Non-Degree)
                     </p>
                   </div>
                 </div>
