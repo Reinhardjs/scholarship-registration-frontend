@@ -53,7 +53,7 @@ const LandingPage = () => {
                       src="/images/student.png"
                     />
                     <p className="m-auto grow text-center text-lg">
-                      Japanese Studies 2023
+                      Japanese Studies 2023 (Non-Degree)
                     </p>
                   </div>
                 </div>
