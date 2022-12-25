@@ -34,7 +34,7 @@ const LandingPage = () => {
                       src="/images/teacher.png"
                     />
                     <p className="m-auto grow text-center text-lg">
-                      Teacher Training 2023
+                      Teacher Training 2023 (Non-Degree)
                     </p>
                   </div>
                 </div>
@@ -53,7 +53,7 @@ const LandingPage = () => {
                       src="/images/student.png"
                     />
                     <p className="m-auto grow text-center text-lg">
-                      Japanese Studies 2023 (Non-Degree)
+                      Japanese Studies 2023
                     </p>
                   </div>
                 </div>
