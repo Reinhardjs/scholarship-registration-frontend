@@ -118,6 +118,9 @@ const JapaneseStudiesRegistration = () => {
       return;
     }
 
+    setCaptchaValue(undefined);
+    captcha.reset();
+
     setIsLoading(true);
     setTimeout(() => {
       console.log(formData);
@@ -142,8 +145,6 @@ const JapaneseStudiesRegistration = () => {
               setResponseMessage(data);
             } else {
               setIsSuccess(true);
-              setCaptchaValue(undefined);
-              captcha.reset();
               form.reset();
             }
           },
