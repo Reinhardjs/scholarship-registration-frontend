@@ -7,6 +7,8 @@ axios.defaults.withCredentials = true;
 const Login = () => {
   const [captchaValue, setCaptchaValue] = React.useState();
 
+  let captcha;
+
   function onCaptchaChange(value) {
     setCaptchaValue(value);
     console.log("Captcha value:", value);
@@ -21,6 +23,9 @@ const Login = () => {
       );
       return;
     }
+
+    setCaptchaValue(undefined);
+    captcha.reset();
 
     const username = e.target[0].value;
     const password = e.target[1].value;
@@ -90,6 +95,7 @@ const Login = () => {
                 <ReCAPTCHA
                   sitekey="6LePQasjAAAAAMGWKSL8J_BmG0OBf3kkfk348Dr0"
                   onChange={onCaptchaChange}
+                  ref={(e) => (captcha = e)}
                 />
               </div>
               <button
