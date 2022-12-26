@@ -25,6 +25,7 @@ const TeacherTrainingRegistration = () => {
   const [formData, setFormData] = React.useState();
   const [captchaValue, setCaptchaValue] = React.useState();
 
+  let captcha;
   var calculatedAge;
   const form = useForm();
   const history = useHistory();
@@ -134,6 +135,8 @@ const TeacherTrainingRegistration = () => {
               setResponseMessage(data);
             } else {
               setIsSuccess(true);
+              setCaptchaValue(undefined);
+              captcha.reset();
               form.reset();
             }
           },
@@ -484,6 +487,7 @@ const TeacherTrainingRegistration = () => {
                 <ReCAPTCHA
                   sitekey="6LePQasjAAAAAMGWKSL8J_BmG0OBf3kkfk348Dr0"
                   onChange={onCaptchaChange}
+                  ref={(e) => (captcha = e)}
                 />
               </div>
 
