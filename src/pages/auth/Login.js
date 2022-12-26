@@ -1,10 +1,26 @@
+import React from "react";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 axios.defaults.withCredentials = true;
 
 const Login = () => {
+  const [captchaValue, setCaptchaValue] = React.useState();
+
+  function onCaptchaChange(value) {
+    setCaptchaValue(value);
+    console.log("Captcha value:", value);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!captchaValue) {
+      alert(
+        "Captcha tidak valid, mohon lakukan validasi captcha terlebih dahulu"
+      );
+      return;
+    }
 
     const username = e.target[0].value;
     const password = e.target[1].value;
@@ -14,7 +30,7 @@ const Login = () => {
       password,
     };
 
-    axios.post("https://api.daftarbeasiswamext.com/admin/login", body).then(
+    axios.post("http://api.daftarbeasiswamext.com/admin/login", body).then(
       (response) => {
         const { data } = response;
         if (data === "Login Successful") {
@@ -68,6 +84,12 @@ const Login = () => {
                   placeholder="••••••••"
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                   required=""
+                />
+              </div>
+              <div className="w-full">
+                <ReCAPTCHA
+                  sitekey="6LePQasjAAAAAMGWKSL8J_BmG0OBf3kkfk348Dr0"
+                  onChange={onCaptchaChange}
                 />
               </div>
               <button

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import calculateAge from "../utils/calculateAge";
 import Input from "../components/Input";
@@ -22,6 +23,7 @@ const TeacherTrainingRegistration = () => {
   const [isFailed, setIsFailed] = React.useState(false);
   const [responseMessage, setResponseMessage] = React.useState("");
   const [formData, setFormData] = React.useState();
+  const [captchaValue, setCaptchaValue] = React.useState();
 
   var calculatedAge;
   const form = useForm();
@@ -93,7 +95,19 @@ const TeacherTrainingRegistration = () => {
     setIsModalOpen(true);
   };
 
+  function onCaptchaChange(value) {
+    setCaptchaValue(value);
+    console.log("Captcha value:", value);
+  }
+
   const handleOnConfirmSubmit = () => {
+    if (!captchaValue) {
+      alert(
+        "Captcha tidak valid, mohon lakukan validasi captcha terlebih dahulu"
+      );
+      return;
+    }
+
     setIsLoading(true);
     setTimeout(() => {
       console.log(formData);
@@ -105,24 +119,29 @@ const TeacherTrainingRegistration = () => {
 
       formData.age = formData.age.toString();
 
-      axios.post("https://api.daftarbeasiswamext.com/teacher-training/register", formData).then(
-        (response) => {
-          setIsLoading(false);
-          const { data } = response;
-          console.log(data); // data is object
-          if (typeof data === "string") {
-            setIsFailed(true);
-            setResponseMessage(data);
-          } else {
-            setIsSuccess(true);
-            form.reset();
+      axios
+        .post(
+          "https://api.daftarbeasiswamext.com/teacher-training/register",
+          formData
+        )
+        .then(
+          (response) => {
+            setIsLoading(false);
+            const { data } = response;
+            console.log(data); // data is object
+            if (typeof data === "string") {
+              setIsFailed(true);
+              setResponseMessage(data);
+            } else {
+              setIsSuccess(true);
+              form.reset();
+            }
+          },
+          (error) => {
+            console.log(error);
+            alert(JSON.stringify(error));
           }
-        },
-        (error) => {
-          console.log(error);
-          alert(JSON.stringify(error));
-        }
-      );
+        );
     }, 1000);
   };
 
@@ -460,6 +479,13 @@ const TeacherTrainingRegistration = () => {
                   Silakan centang terlebih dahulu
                 </span>
               )}
+
+              <div className="w-full">
+                <ReCAPTCHA
+                  sitekey="6LePQasjAAAAAMGWKSL8J_BmG0OBf3kkfk348Dr0"
+                  onChange={onCaptchaChange}
+                />
+              </div>
 
               <div className="pt-2.5">
                 <button
