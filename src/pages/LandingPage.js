@@ -24,13 +24,15 @@ const LandingPage = () => {
                   src="/images/study-abroad.svg"
                 />
                 <div className="mx-auto grid max-w-2xl pt-6 sm:grid-cols-1 sm:gap-8 sm:pt-8">
-                  <div className="h-full cursor-pointer rounded-3xl bg-primary-600 px-5 py-8 pt-2.5 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:duration-200 sm:hover:translate-y-2">
+                  <div
+                    className="h-full cursor-pointer rounded-3xl bg-primary-600 px-5 py-8 pt-2.5 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:duration-200 sm:hover:translate-y-2"
+                    onClick={() => {
+                      history.push("/teacher");
+                    }}
+                  >
                     <div
                       className="flex w-full grid-cols-2 justify-center px-5 py-8 text-sm font-medium text-white sm:py-4"
                       type="submit"
-                      onClick={() => {
-                        history.push("/teacher");
-                      }}
                     >
                       <img
                         className="object-contain"
@@ -47,13 +49,15 @@ const LandingPage = () => {
                       bidangnya.
                     </p>
                   </div>
-                  <div className="mt-4 h-full cursor-pointer rounded-3xl border bg-white px-5 py-8 pt-2.5 shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0 sm:duration-200 sm:hover:translate-y-2">
+                  <div
+                    className="mt-4 h-full cursor-pointer rounded-3xl border bg-white px-5 py-8 pt-2.5 shadow hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0 sm:duration-200 sm:hover:translate-y-2"
+                    onClick={() => {
+                      history.push("/student");
+                    }}
+                  >
                     <div
                       className="flex w-full grid-cols-2 justify-center px-5 py-8 text-sm font-medium sm:mb-0 sm:mt-0 sm:py-4"
                       type="submit"
-                      onClick={() => {
-                        history.push("/student");
-                      }}
                     >
                       <img
                         className="object-contain"
