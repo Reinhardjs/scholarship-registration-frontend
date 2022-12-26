@@ -15,7 +15,7 @@ const LandingPage = () => {
               <h1 className="text-center text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:mt-0 sm:text-4xl md:text-5xl lg:pt-8">
                 PENDAFTARAN BEASISWA MEXT
               </h1>
-              <p className="text-center text-lg font-extralight">
+              <p className="pt-[3rem] text-center text-lg font-extralight md:pt-0">
                 Periode 26 Desember 2022 - 18 Januari 2023
               </p>
               <div className="grid grid-cols-1 place-items-center sm:grid-cols-2">
