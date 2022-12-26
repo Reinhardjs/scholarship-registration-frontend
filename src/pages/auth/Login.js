@@ -30,7 +30,7 @@ const Login = () => {
       password,
     };
 
-    axios.post("http://api.daftarbeasiswamext.com/admin/login", body).then(
+    axios.post("https://api.daftarbeasiswamext.com/admin/login", body).then(
       (response) => {
         const { data } = response;
         if (data === "Login Successful") {
