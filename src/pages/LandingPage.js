@@ -20,7 +20,7 @@ const LandingPage = () => {
               </p>
               <div className="grid grid-cols-1 place-items-center sm:grid-cols-2">
                 <img
-                  className="w-[250px] animate-loader pt-4 sm:w-[400px]"
+                  className="mr-0 w-[250px] animate-loader pt-4 sm:w-[465px] sm:pt-1 lg:mr-[4rem] xl:mr-[8rem]"
                   src="/images/study-abroad.svg"
                 />
                 <div className="mx-auto grid max-w-2xl pt-6 sm:grid-cols-1 sm:gap-8 sm:pt-8">
