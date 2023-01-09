@@ -6,6 +6,7 @@ import JapaneseStudiesRegistration from "./pages/JapaneseStudiesRegistration";
 import TeacherTrainingRegistration from "./pages/TeacherTrainingRegistration";
 import LandingPage from "./pages/LandingPage";
 import Admin from "./pages/admin/Admin";
+import ResendEmail from "./pages/admin/ResendEmail";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       </Route>
       <Route path="/admin">
         <Admin />
+      </Route>
+      <Route path="/admin/resend-email">
+        <ResendEmail />
       </Route>
     </Switch>
   );
