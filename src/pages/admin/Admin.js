@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Fragment } from "react";
-import { Redirect } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -13,6 +13,8 @@ import AdminDashboard from "./AdminDashboard";
 import Login from "../auth/Login";
 
 const Admin = () => {
+  const history = useHistory();
+
   const handleSignOut = () => {
     axios.post("https://api.daftarbeasiswamext.com/admin/logout").then(
       (response) => {
@@ -97,7 +99,7 @@ const Admin = () => {
                                 "block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                               }
                               onClick={() => {
-                                <Redirect to='resend-email' />
+                                history.push("/admin/resend-email");
                               }}
                             >
                               Resend Email

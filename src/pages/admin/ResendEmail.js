@@ -88,7 +88,7 @@ const ResendEmail = () => {
                                 <ArrowLeftIcon
                                     className="h-7 w-7 cursor-pointer text-red-600"
                                     onClick={() => {
-                                        history.replace("/");
+                                        history.replace("/admin");
                                     }}
                                 />
                             </div>
