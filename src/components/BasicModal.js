@@ -84,8 +84,7 @@ const BasicModal = ({
                                                 }
                                             >
                                                 {!isLoading && !isSuccess && !isFailed && "Konfirmasi"}
-                                                {isLoading && "Sedang mengirimkan data..."}
-                                                {!isLoading && responseMessage}
+                                                {isLoading ? "Sedang mengirimkan data..." : responseMessage}
                                             </Dialog.Title>
                                         </div>
                                     </div>
