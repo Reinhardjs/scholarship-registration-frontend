@@ -20,11 +20,11 @@ function App() {
       <Route path="/student">
         <JapaneseStudiesRegistration />
       </Route>
-      <Route path="/admin">
-        <Admin />
-      </Route>
       <Route path="/admin/resend-email">
         <ResendEmail />
+      </Route>
+      <Route path="/admin">
+        <Admin />
       </Route>
     </Switch>
   );
